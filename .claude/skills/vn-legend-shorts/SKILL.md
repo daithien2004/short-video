@@ -59,6 +59,7 @@ Chạy lại Studio: tắt tiến trình cũ trước (tắt `studio.py` mà đ�
 ## Luật về hình (người dùng đã chốt qua nhiều vòng sửa)
 - **Hình đổi theo nội dung đang đọc.** Mỗi khung hình giữ tối đa khoảng 3,5 giây, thường 1 đến 3 giây. Cảnh dài mà một hình là chán.
 - **Mỗi khung hình là một cảnh vẽ mới.** Được dùng lại nhân vật, đồ vật, mảnh nền; **không** dùng lại nguyên một cảnh đã xuất hiện trong video.
+- **Mỗi nhân vật trong truyện có hình riêng, phân biệt được.** Không dùng chung một hình người (ví dụ cùng một mẫu "Lê Lợi" áo đỏ mũ quan) cho nhiều nhân vật khác nhau như vua, người đánh cá, lính, nông dân, quân địch. Khác nhau về trang phục, màu, mũ, dáng, đồ cầm. Một nhân vật xuất hiện lại ở nhiều cảnh thì giữ nguyên hình của nhân vật đó. (Video Hoàn Kiếm đã mắc lỗi này và đã xong, đừng lặp lại ở truyện sau.) Khi lên danh sách cảnh, ghi rõ từng nhân vật và cách nhận ra họ trước khi vẽ.
 - **Hoạt ảnh tối giản**, chủ yếu thể hiện nội dung. Chỉ đẩy máy chậm 5% (mặc định) và chuyển động nhẹ (sóng, mây, đom đóm). Không zoom/lia kiểu "phóng lên".
 - **Phong cách cắt giấy (paper-cut)**, nhân vật đơn giản dễ đọc, nền phẳng. Giữ nguyên hình đã chốt, không "cải thiện" khi chưa được yêu cầu.
 - **Phụ đề:** chữ trắng, hiện 1 đến 2 từ một lần, nảy nhẹ, cao khoảng 70% màn hình. **Không** dùng dòng sự kiện màu vàng, không highlight vàng, không thẻ câu hỏi, không chép từ video tham khảo của người dùng (chỉ để lấy cảm hứng).
@@ -81,12 +82,13 @@ Chạy lại Studio: tắt tiến trình cũ trước (tắt `studio.py` mà đ�
 ## Vẽ cảnh mới (khi thiếu)
 - Hàm trả về `(nền RGB 1080x1920, [lớp...])`. Lớp: `(tốc_độ_parallax, layer(vẽ, bóng, lệch), hàm_chuyển_động(t)→(dx,dy))` hoặc lớp giả `(0,"glow",ảnh)`, `(0,"rays",ảnh)`, `(0,"sparkle",None)`. Đăng ký tên trong `registry()` (`scenes_hk.py`) hoặc `REG` trong `scenes_hk2.py`, thêm tên vào `SCENES` trong `studio.py` và nhãn tiếng Việt trong `LABEL` ở `static/studio.html`.
 - Trình vẽ `D` chỉ có `polygon, ellipse, rectangle, line, arc, pieslice, regular_polygon`. **Không có `rounded_rectangle`.** Toạ độ và kích thước phải là số nguyên (ép `int`) khi tạo ảnh/mảng. Lớp vẽ trên bề rộng `W+2*PAD` (PAD=70).
-- Dùng lại: `X.person` (nhân vật mặc áo đỏ), `X.boat`, `X.turtle`, `S.sword_rgba`, `S.sword_glow`, `X.tower_layer`, sóng `fill_wave`, núi `S.mountain`.
+- Dùng lại được: đồ vật và nền (`X.boat`, gươm, tháp, sóng, núi) và **cùng một nhân vật ở các cảnh khác**. `X.person` hiện chỉ là một mẫu người áo đỏ mũ quan: chỉ dùng cho đúng một nhân vật, nhân vật khác phải vẽ hàm riêng (đã có `_peasant`, `_foe` làm mẫu). Đồ vật khác: `X.boat`, `X.turtle`, `S.sword_rgba`, `S.sword_glow`, `X.tower_layer`, sóng `fill_wave`, núi `S.mountain`.
 - **Xem bảng ảnh tĩnh nhiều cảnh trước** (render vài khung rồi ghép thành một ảnh), sửa, rồi mới dựng video.
 
 ## Những sai lầm đã gặp, đừng lặp lại
 - Render video ngay khi người dùng chưa xem khung hình. (Họ đã nói "đừng render vội".)
 - Dùng lại nguyên cảnh cho nhiều khung hình, một cảnh dài giữ một hình, zoom/lia máy, bìa tĩnh, thanh gươm trên bìa.
+- **Dùng chung một hình nhân vật (`X.person`, áo đỏ mũ quan) cho nhiều nhân vật khác nhau** (vua, ngư dân, lính, nông dân...). Mỗi nhân vật phải có hình riêng.
 - Để mascot lộ viền dưới, hoặc lệch tâm (nhiều pixel mờ làm hộp bao sai: dùng khung cắt chung).
 - Ép người dùng chọn quá nhiều câu hỏi hoặc đề xuất xong lại chờ. Hãy chọn, làm, cho xem.
 - Nói "xong" khi chưa kiểm tra: luôn nói rõ chỉ xem ảnh tĩnh hay đã xem video, đã nghe giọng chưa.
@@ -103,5 +105,5 @@ Chạy lại Studio: tắt tiến trình cũ trước (tắt `studio.py` mà đ�
 - claude-mem có thể báo mất đăng nhập: người dùng cần `/login` hoặc `claude setup-token`; không tự khởi động lại worker.
 
 ## Việc còn mở (làm sau, khi người dùng yêu cầu)
-- Tách 26 cảnh Hoàn Kiếm thành **thư viện mảnh ghép** (nền, nhân vật, đồ vật, hiệu ứng) và cảnh dạng "công thức" dữ liệu, để truyện sau tốn ít token. Cần thêm nhân vật khác (nữ, trẻ em, nhà sư, lính...).
+- Tách 26 cảnh Hoàn Kiếm thành **thư viện mảnh ghép** (nền, nhân vật, đồ vật, hiệu ứng) và cảnh dạng "công thức" dữ liệu, để truyện sau tốn ít token. Cần thêm nhiều nhân vật có hình riêng (nữ, trẻ em, nhà sư, lính, vua, ngư dân, tướng...), mỗi loại một diện mạo, và thư viện phải có sẵn trước khi làm truyện sau.
 - Forced alignment để phụ đề khớp từng từ. Đo vùng an toàn thật trên điện thoại. Huy hiệu "cần làm lại" riêng cho bản đẹp.
