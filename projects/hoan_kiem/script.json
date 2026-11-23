@@ -1,0 +1,187 @@
+{
+ "title": [
+  "TRUYỀN THUYẾT",
+  "HỒ HOÀN KIẾM"
+ ],
+ "hook": "Truyền thuyết về Hồ Hoàn Kiếm?",
+ "out": "out/hoan_kiem_preview.mp4",
+ "scenes": [
+  {
+   "scene": "hanoi",
+   "text": "Giữa lòng Hà Nội có một hồ nước mang tên Hồ Hoàn Kiếm, dịch ra có nghĩa là trả gươm. Trả cho ai? Câu trả lời nằm trong một truyền thuyết hơn năm trăm năm tuổi.",
+   "shots": [
+    {
+     "at": 1,
+     "scene": "swordlake"
+    },
+    {
+     "at": 3,
+     "scene": "scroll"
+    }
+   ],
+   "fx": [
+    "fireflies"
+   ]
+  },
+  {
+   "scene": "enemy",
+   "text": "Đầu thế kỷ mười lăm, nước Việt bị nhà Minh đô hộ. Lê Lợi dựng cờ khởi nghĩa ở Lam Sơn, nhưng nghĩa quân còn yếu, nhiều lần thất bại.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "banners"
+    },
+    {
+     "at": 3,
+     "scene": "weak"
+    }
+   ]
+  },
+  {
+   "scene": "suffer",
+   "text": "Truyền thuyết kể rằng, thấy dân chịu khổ, Long Quân bèn cho nghĩa quân mượn một thanh gươm thần.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "longquan"
+    }
+   ]
+  },
+  {
+   "scene": "fisher",
+   "text": "Ở vùng sông nước, có người đánh cá tên Lê Thận. Ba lần liền, ông kéo lưới lên đều chỉ thấy một lưỡi gươm sắt. Ông mang nó theo nghĩa quân.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "netcatch"
+    },
+    {
+     "at": 4,
+     "scene": "camp"
+    }
+   ]
+  },
+  {
+   "scene": "forest",
+   "text": "Còn Lê Lợi, một lần đi trong rừng, thấy trên ngọn cây đa có vật sáng. Đó là chuôi của thanh gươm.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "banyan"
+    },
+    {
+     "at": 3,
+     "scene": "hilt"
+    }
+   ]
+  },
+  {
+   "scene": "join",
+   "text": "Hai mảnh ghép lại, vừa khít như được rèn từ trước. Trên lưỡi gươm khắc hai chữ: Thuận Thiên.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "sword"
+    }
+   ]
+  },
+  {
+   "scene": "army",
+   "text": "Có gươm thần trong tay, nghĩa quân xoay chuyển thế trận. Sau mười năm kháng chiến, giặc Minh bị đánh đuổi khỏi bờ cõi.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "victory"
+    }
+   ]
+  },
+  {
+   "scene": "throne",
+   "text": "Giặc tan, Lê Lợi lên ngôi vua, đất nước thái bình. Một ngày, nhà vua chèo thuyền dạo trên hồ ngay giữa kinh thành.",
+   "shots": [
+    {
+     "at": 3,
+     "scene": "boat"
+    }
+   ]
+  },
+  {
+   "scene": "storm",
+   "text": "Bỗng mặt hồ nổi sóng. Một con rùa vàng lớn ngoi lên, cất tiếng: xin bệ hạ hoàn gươm thần cho Long Quân.",
+   "shots": [
+    {
+     "at": 1,
+     "scene": "turtle"
+    },
+    {
+     "at": 3,
+     "scene": "plea"
+    }
+   ],
+   "mood": "kich",
+   "mascot": true
+  },
+  {
+   "scene": "lakeshore",
+   "text": "Nhà vua hiểu ra: gươm chỉ mượn để cứu nước. Giặc đã hết, thì phải trả. Ông nâng gươm lên, rùa vàng ngậm lấy, rồi lặn xuống đáy hồ.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "peace"
+    },
+    {
+     "at": 4,
+     "scene": "offer"
+    },
+    {
+     "at": 6,
+     "scene": "underwater"
+    }
+   ]
+  },
+  {
+   "scene": "dawnlake",
+   "text": "Từ đó, hồ mang tên Hoàn Kiếm, nghĩa là trả lại gươm. Nhiều người tin rùa vàng ấy chính là thần Kim Quy, người từng giúp An Dương Vương xây thành Cổ Loa.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "emblem"
+    },
+    {
+     "at": 3,
+     "scene": "kimquy",
+     "mood": "huyen"
+    },
+    {
+     "at": 4,
+     "scene": "coloa",
+     "mood": "huyen"
+    }
+   ]
+  },
+  {
+   "scene": "winter",
+   "text": "Mãi đến tháng Một năm hai nghìn không trăm mười sáu, một cụ rùa khổng lồ trong hồ, được người dân gọi là cụ rùa Hồ Gươm, mới qua đời.",
+   "shots": [
+    {
+     "at": 1,
+     "scene": "oldturtle",
+     "mood": "tram"
+    },
+    {
+     "at": 2,
+     "scene": "crowd",
+     "mood": "tram"
+    },
+    {
+     "at": 3,
+     "scene": "incense",
+     "mood": "tram"
+    }
+   ],
+   "mood": "tram"
+  }
+ ],
+ "cover": "tower",
+ "speed": 1.12
+}

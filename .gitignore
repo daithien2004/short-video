@@ -1,0 +1,12 @@
+# generated / large / local
+cache/
+exports/
+previews/
+out/
+archive/
+__pycache__/
+*.pyc
+nohup.out
+.claude/settings.local.json
+# old photo assets (Wikimedia, license sidecars; not used by the paper-cut pipeline)
+assets/img/

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Studio Short</title>
+<style>
+:root{--bg:#14110f;--bg2:#1c1815;--card:#231e1a;--line:#352e28;--tx:#f3ece4;--dim:#a39889;--gold:#f2b73d;--red:#e0584a;--grn:#5fb878;--blu:#6aa8e8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 "Segoe UI",system-ui,sans-serif}
+button,select,textarea,input{font:inherit;color:inherit}
+.top{position:sticky;top:0;z-index:5;background:rgba(20,17,15,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.brand{font-weight:700;font-size:18px;letter-spacing:.3px}.brand b{color:var(--gold)}
+.sp{flex:1}.pill{font-size:12px;padding:2px 9px;border-radius:99px;border:1px solid var(--line);color:var(--dim);white-space:nowrap}
+.pill.ok{color:var(--grn);border-color:#2f5a3d}.pill.warn{color:var(--gold);border-color:#6a5220}.pill.bad{color:var(--red);border-color:#6a2c26}
+.btn{border:1px solid var(--line);background:var(--card);padding:7px 14px;border-radius:9px;cursor:pointer;transition:.15s}.btn:hover:not(:disabled){border-color:var(--gold)}.btn:disabled{opacity:.45;cursor:default}
+.btn.pri{background:var(--gold);color:#201605;border-color:var(--gold);font-weight:600}.btn.sm{padding:4px 10px;font-size:13px}.btn.ghost{background:none}
+.main{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:24px;padding:24px;max-width:1300px;margin:0 auto}
+@media(max-width:980px){.main{grid-template-columns:1fr}.side{position:static!important}}
+.list{display:flex;flex-direction:column;gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;transition:.15s}.card.sel{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.num{width:28px;height:28px;border-radius:50%;background:var(--bg2);display:grid;place-items:center;font-size:13px;color:var(--gold);font-weight:700;flex:none}
+select,input[type=text],textarea{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:6px 10px;outline:none}select:focus,input:focus,textarea:focus{border-color:var(--gold)}
+textarea{width:100%;resize:vertical;min-height:72px;margin:10px 0 8px;line-height:1.55}
+label.chk{display:flex;gap:6px;align-items:center;color:var(--dim);cursor:pointer;font-size:13px}
+.meta{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-left:auto}
+.side{position:sticky;top:76px;align-self:start;display:flex;flex-direction:column;gap:12px}
+.phone{background:#000;border:1px solid var(--line);border-radius:22px;overflow:hidden;aspect-ratio:9/16;height:calc(100vh - 270px);min-height:300px;max-width:100%;margin:0 auto;display:grid;place-items:center;position:relative}
+.phone video,.phone img{width:100%;height:100%;object-fit:contain;background:#000}.empty{color:var(--dim);padding:24px;text-align:center;font-size:14px}
+.tabs{display:flex;gap:6px}.tabs .btn.on{border-color:var(--gold);color:var(--gold)}
+.bar{height:6px;border-radius:9px;background:var(--bg2);overflow:hidden}.bar i{display:block;height:100%;background:var(--gold);transition:width .3s}
+.err{color:var(--red);font-size:13px}.hint{color:var(--dim);font-size:13px}
+.field{display:flex;flex-direction:column;gap:4px;flex:1;min-width:140px}.field span{font-size:12px;color:var(--dim)}
+input[type=range]{width:100%;accent-color:var(--gold)}  .exp{padding:8px 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:6px}.exp.on b{color:var(--gold)}a.btn{text-decoration:none;display:inline-block}
+  .shots{display:flex;flex-direction:column;gap:8px;margin-bottom:6px}
+h3{margin:0 0 8px;font-size:14px;color:var(--dim);font-weight:600;text-transform:uppercase;letter-spacing:.8px}
+</style></head>
+<body><div id="root"></div>
+<script src="/files/static/vendor/react.js"></script><script src="/files/static/vendor/react-dom.js"></script><script src="/files/static/vendor/babel.js"></script>
+<script type="text/babel">
+const {useState,useEffect,useRef,useCallback}=React;
+const LABEL={tower:"Tháp Rùa",banners:"Cờ khởi nghĩa",dragon:"Long Quân (xoắn vàng)",fisher:"Lê Thận kéo lưới",banyan:"Cây đa",sword:"Gươm ghép",victory:"Chiến thắng",boat:"Thuyền vua",turtle:"Rùa vàng",returned:"Trả gươm",longquan:"Long Quân (rồng)",army:"Nghĩa quân",hanoi:"Phố cổ Hà Nội",underwater:"Dưới đáy hồ",coloa:"Thành Cổ Loa",enemy:"Quân Minh",throne:"Ngai vàng",swordlake:"Gươm trên hồ",weak:"Nghĩa quân yếu",camp:"Trại quân",netcatch:"Lưới kéo gươm",join:"Ghép gươm",lakeshore:"Bờ hồ hoàng hôn",offer:"Dâng gươm",dawnlake:"Hồ buổi sớm",kimquy:"Thần Kim Quy",winter:"Hồ mùa đông",oldturtle:"Cụ rùa",crowd:"Người dân bên hồ",incense:"Hương hoa tưởng nhớ",suffer:"Dân chịu khổ",peace:"Thái bình",forest:"Rừng đêm",hilt:"Chuôi gươm",storm:"Mặt hồ nổi sóng",plea:"Rùa cất tiếng",emblem:"Rùa đội gươm",scroll:"Cuộn truyền thuyết"};
+const MOOD={"":"Thường",kich:"Kịch tính (đỏ)",huyen:"Huyền bí (tím)",tram:"Trầm (xám xanh)"};
+const CAM={"":"Máy quay: đẩy nhẹ",zoomin:"Zoom vào",zoomout:"Zoom ra",panr:"Lia sang phải",panl:"Lia sang trái"};
+const phr=t=>(t.match(/[^.,?!:]+[.,?!:]?/g)||[]).map(x=>x.trim()).filter(Boolean);
+function Shots({s,names,onChange}){
+  const ph=phr(s.text),shots=s.shots||[],upd=l=>onChange({shots:l.length?l:undefined}),set=(i,p)=>upd(shots.map((x,j)=>j===i?{...x,...p}:x));
+  return <div className="shots" onClick={e=>e.stopPropagation()}>
+    {shots.map((x,i)=><div className="row" key={i}><span className="hint">Từ câu</span>
+      <select value={x.at} onChange={e=>set(i,{at:+e.target.value})}>{ph.map((p,j)=><option key={j} value={j}>{j+1}. {p.split(" ").slice(0,5).join(" ")}…</option>)}</select>
+      <select value={x.scene} onChange={e=>set(i,{scene:e.target.value})}>{names.map(n=><option key={n} value={n}>{LABEL[n]||n}</option>)}</select>
+      <select value={x.mood||""} onChange={e=>set(i,{mood:e.target.value||undefined})}>{Object.entries(MOOD).map(([v,l])=><option key={v} value={v}>{l}</option>)}</select>
+      <button className="btn sm ghost" onClick={()=>upd(shots.filter((_,j)=>j!==i))}>Xoá</button></div>)}
+    <button className="btn sm ghost" onClick={()=>upd([...shots,{at:Math.min(ph.length-1,shots.length?shots[shots.length-1].at+1:1),scene:"tower"}])}>+ Thêm khung hình (đổi hình giữa cảnh)</button></div>}
+let PROJ=(()=>{try{return localStorage.getItem("proj")||""}catch(e){return ""}})();
+const api=(p,b)=>fetch(p+(p.includes("?")?"&":"?")+"p="+encodeURIComponent(PROJ),b?{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)}:undefined).then(r=>r.json());
+const fmt=s=>s==null?"—":`${s.toFixed(1)}s`;
+
+function Badges({st}){return <div className="meta">
+  <span className={"pill "+(st.tts?"ok":"warn")}>{st.tts?"giọng "+fmt(st.dur):"chưa có giọng"}</span>
+  <span className={"pill "+(st.draft?"ok":"warn")}>{st.draft?"nháp ✓":"cần dựng"}</span></div>}
+
+function Scene({k,s,st,sel,names,busy,onSel,onChange,onMove,onDel,onAdd,onAudio,onScene}){
+  return <div className={"card"+(sel?" sel":"")} onClick={onSel}>
+    <div className="row"><div className="num">{k+1}</div>
+      <select value={s.scene} onChange={e=>onChange({scene:e.target.value})}>{names.map(n=><option key={n} value={n}>{LABEL[n]||n}</option>)}</select>
+      <select value={s.mood||""} onChange={e=>onChange({mood:e.target.value||undefined})}>{Object.entries(MOOD).map(([v,l])=><option key={v} value={v}>{l}</option>)}</select>
+      <select value={s.cam||""} onChange={e=>onChange({cam:e.target.value||undefined})}>{Object.entries(CAM).map(([v,l])=><option key={v} value={v}>{l}</option>)}</select>
+      <label className="chk"><input type="checkbox" checked={!!s.mascot} onChange={e=>onChange({mascot:e.target.checked||undefined})}/>Mascot</label>
+      <label className="chk"><input type="checkbox" checked={(s.fx||[]).includes("fireflies")} onChange={e=>onChange({fx:e.target.checked?["fireflies"]:undefined})}/>Đom đóm</label>
+      <Badges st={st}/></div>
+    <textarea value={s.text} onChange={e=>onChange({text:e.target.value})} onClick={e=>e.stopPropagation()}/>
+    <Shots s={s} names={names} onChange={onChange}/>
+    <div className="row" style={{marginTop:8}}><button className="btn sm" disabled={busy} onClick={e=>{e.stopPropagation();onAudio()}}>🔊 Nghe</button>
+      <button className="btn sm" disabled={busy} onClick={e=>{e.stopPropagation();onScene()}}>▶ Xem cảnh</button>
+      <span className="sp"/><button className="btn sm ghost" onClick={e=>{e.stopPropagation();onMove(-1)}}>↑</button><button className="btn sm ghost" onClick={e=>{e.stopPropagation();onMove(1)}}>↓</button>
+      <button className="btn sm ghost" onClick={e=>{e.stopPropagation();onAdd()}}>+ thêm sau</button><button className="btn sm ghost" onClick={e=>{e.stopPropagation();onDel()}}>Xoá</button></div></div>}
+
+function Exports({items,onPlay,onChange,playing}){
+  const f=t=>new Date(t*1000).toLocaleString("vi-VN"),mb=n=>(n/1048576).toFixed(1)+" MB",act=(p,x)=>api(p,{name:x.name}).then(onChange);
+  const group=(kind,title,empty)=>{const l=items.filter(x=>x.kind===kind);return <div style={{marginBottom:10}}><h3>{title}</h3>{!l.length&&<div className="hint">{empty}</div>}
+    {l.map(x=><div key={x.name} className={"exp"+(playing===x.url?" on":"")}>
+      <div><b>{f(x.mtime)}</b> <span className="hint">{mb(x.size)}</span></div>
+      <div className="row"><button className="btn sm" onClick={()=>onPlay(x)}>▶ Xem</button><a className="btn sm" href={x.url.replace("?v=","?dl=1&v=")} download>⬇ Tải</a>
+        <button className="btn sm ghost" onClick={()=>act("/api/export_reveal",x)}>📂 Thư mục</button>
+        <button className="btn sm ghost" onClick={()=>confirm("Xoá file này? Không khôi phục được: "+x.name)&&act("/api/export_delete",x)}>🗑 Xoá</button></div></div>)}</div>};
+  return <div className="card">{group("final","Bản chính (đã xuất)","Chưa có. Bấm \"Xuất đầy đủ\" để tạo; mỗi lần xuất ra một file mới, không ghi đè.")}{group("draft","Bản nháp (xem thử)","Chưa có. Bấm \"Dựng nháp\".")}</div>}
+
+function App(){
+  const [exps,setExps]=useState([]),[sc,setSc]=useState(null),[meta,setMeta]=useState({scenes:[],name:"",projects:[]}),[state,setState]=useState(null),[job,setJob]=useState({running:false}),[videos,setVideos]=useState({});
+  const [sel,setSel]=useState(0),[t,setT]=useState(2),[still,setStill]=useState(null),[view,setView]=useState("still"),[clip,setClip]=useState(null),[saving,setSaving]=useState(false),[err,setErr]=useState(null);
+  const audioRef=useRef(),saveT=useRef(),stillT=useRef(),loaded=useRef(false);
+  const loadExps=useCallback(()=>api("/api/exports").then(r=>setExps(r.items)),[]);
+  const refresh=useCallback(()=>{loadExps();return api("/api/state").then(r=>{setState(r.state);setVideos(r.videos);setJob(r.job)})},[]);
+  useEffect(()=>{api("/api/script").then(r=>{PROJ=r.name;setSc(r.script);setMeta(r);loaded.current=true;refresh()})},[]);
+  // autosave
+  const edit=f=>setSc(prev=>{const n=f(JSON.parse(JSON.stringify(prev)));clearTimeout(saveT.current);setSaving(true);saveT.current=setTimeout(()=>api("/api/script",n).then(()=>{setSaving(false);refresh()}),600);return n});
+  const setScene=(k,p)=>edit(n=>{Object.assign(n.scenes[k],p);Object.keys(p).forEach(x=>p[x]===undefined&&delete n.scenes[k][x]);return n});
+  // job polling
+  useEffect(()=>{if(!job.running)return;const i=setInterval(()=>api("/api/job").then(j=>{setJob(j);if(!j.running){clearInterval(i);refresh();
+      if(j.result?.video){setClip({url:j.result.video,label:j.label});setView("video")}
+      if(j.result?.audio&&audioRef.current){audioRef.current.src=j.result.audio;audioRef.current.play()}}}),600);return()=>clearInterval(i)},[job.running]);
+  // still preview (debounced)
+  useEffect(()=>{if(!sc)return;clearTimeout(stillT.current);stillT.current=setTimeout(()=>{if(saving)return;api(`/api/still?k=${sel}&t=${t}&mode=draft`).then(r=>{setStill(r.url);if(r.url)setView(v=>v==="video"&&clip?v:"still")}).catch(()=>setStill(null))},350);return()=>clearTimeout(stillT.current)},[sel,t,sc,saving,state&&JSON.stringify(state.scenes.map(x=>x.dur))]);
+  const run=(path,body)=>api(path,body).then(r=>{if(r.ok===false)setErr("Đang có việc khác chạy, đợi xong đã.");else{setErr(null);setJob({running:true,label:"…",msg:"Bắt đầu",done:0,total:1})}});
+  if(!sc||!state)return <div className="empty">Đang tải…</div>;
+  const switchProj=n=>{try{localStorage.setItem("proj",n)}catch(e){}location.reload()};
+  const newProj=()=>{const n=prompt("Tên dự án mới (chữ không dấu, không khoảng trắng):");if(n)api("/api/new",{name:n}).then(r=>r.name?switchProj(r.name):alert("Tên trống hoặc đã tồn tại."))};
+  const busy=job.running,dirty=state.scenes.filter(x=>!x.draft).length+(state.cover.draft?0:1);
+  const sw=(a,b)=>edit(n=>{const s=n.scenes;if(b<0||b>=s.length)return n;[s[a],s[b]]=[s[b],s[a]];setSel(b);return n});
+  const pct=Math.round(100*job.done/Math.max(job.total,1));
+  const cur=state.scenes[sel]||{};
+  return <>
+    <div className="top"><div className="brand">Studio <b>Short</b></div><select value={meta.name} onChange={e=>switchProj(e.target.value)} title="Dự án">{meta.projects.map(n=><option key={n} value={n}>{n}</option>)}</select>
+      <button className="btn sm" disabled={busy} onClick={newProj}>+ Dự án mới</button>
+      <span className="pill">{state.total?`tổng ${state.total.toFixed(1)}s`:"chưa có độ dài"}</span>{saving&&<span className="pill warn">đang lưu…</span>}<div className="sp"/>
+      <label className="chk" title="Tốc độ đọc. Đổi xong dựng lại nháp, giọng gốc đã lưu nên rất nhanh."><span>Tốc độ giọng {(sc.speed||1.12).toFixed(2)}×</span><input type="range" min="1" max="1.3" step="0.02" value={sc.speed||1.12} onChange={e=>edit(n=>{n.speed=+e.target.value;return n})}/></label>
+      <button className="btn" disabled={busy} onClick={()=>run("/api/render",{mode:"draft"})}>⚡ Dựng nháp {dirty?`(${dirty} cần làm lại)`:"(đã mới)"}</button>
+      <button className="btn pri" disabled={busy} onClick={()=>confirm("Xuất bản đầy đủ 1080×1920 30fps? (chưa đăng đâu, chỉ ra file)")&&run("/api/render",{mode:"final"})}>🎬 Xuất đầy đủ</button></div>
+    <div className="main">
+      <div className="list">
+        <div className="card"><h3>Bìa & lời mở</h3><div className="row">
+          <div className="field"><span>Dòng tiêu đề 1 (vàng)</span><input type="text" value={sc.title[0]} onChange={e=>edit(n=>{n.title[0]=e.target.value;return n})}/></div>
+          <div className="field"><span>Dòng tiêu đề 2 (trắng)</span><input type="text" value={sc.title[1]} onChange={e=>edit(n=>{n.title[1]=e.target.value;return n})}/></div></div>
+          <div className="field" style={{marginTop:10}}><span>Câu đọc mở đầu</span><input type="text" value={sc.hook} onChange={e=>edit(n=>{n.hook=e.target.value;return n})}/></div>
+          <div className="row" style={{marginTop:10}}><Badges st={state.cover}/></div></div>
+        {sc.scenes.map((s,k)=><Scene key={k} k={k} s={s} st={state.scenes[k]||{}} sel={sel===k} names={meta.scenes} busy={busy} onSel={()=>setSel(k)} onChange={p=>setScene(k,p)}
+          onMove={d=>sw(k,k+d)} onDel={()=>confirm(`Xoá cảnh ${k+1}?`)&&edit(n=>{n.scenes.splice(k,1);setSel(Math.max(0,k-1));return n})}
+          onAdd={()=>edit(n=>{n.scenes.splice(k+1,0,{scene:"tower",text:"Lời mới."});setSel(k+1);return n})} onAudio={()=>{setSel(k);run("/api/audio",{k})}} onScene={()=>{setSel(k);run("/api/scene",{k})}}/>)}
+      </div>
+      <div className="side">
+        <div className="tabs"><button className={"btn sm"+(view==="still"?" on":"")} onClick={()=>setView("still")}>Ảnh cảnh {sel+1}</button>
+          <button className={"btn sm"+(view==="video"?" on":"")} disabled={!clip&&!videos.draft} onClick={()=>setView("video")}>Video</button></div>
+        <div className="phone">{view==="video"&&(clip||videos.draft)?<video key={(clip||{url:videos.draft}).url} src={(clip||{url:videos.draft}).url} controls autoPlay playsInline/>
+          :still?<img src={still}/>:<div className="empty">{cur.tts?"Đang vẽ ảnh…":"Cảnh này chưa có giọng nên chưa biết độ dài. Bấm 🔊 Nghe để tạo giọng, ảnh sẽ hiện."}</div>}</div>
+        {view==="still"&&<><input type="range" min="0" max={Math.max((cur.dur||6)-0.1,1)} step="0.1" value={t} onChange={e=>setT(+e.target.value)}/><div className="hint">Thời điểm trong cảnh: {t.toFixed(1)}s</div></>}
+        {busy&&<div className="card"><div className="row"><b>{job.label}</b><span className="hint">{job.msg}</span></div><div className="bar" style={{marginTop:8}}><i style={{width:pct+"%"}}/></div></div>}
+        {job.error&&<div className="err">Lỗi: {job.error}</div>}{err&&<div className="err">{err}</div>}
+        {!busy&&clip&&<div className="hint">Đang xem: {clip.label}</div>}
+        <Exports items={exps} playing={clip&&clip.url} onChange={loadExps} onPlay={x=>{setClip({url:x.url,label:(x.kind==="final"?"Bản đầy đủ ":"Bản nháp ")+new Date(x.mtime*1000).toLocaleString("vi-VN")});setView("video")}}/>
+        <div className="hint">Sửa chữ → tự lưu. Chỉ cảnh nào đổi mới phải vẽ lại; phần còn lại dùng bản đã lưu.</div>
+      </div></div><audio ref={audioRef}/></>}
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script></body></html>
