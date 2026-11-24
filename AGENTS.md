@@ -2,12 +2,12 @@
 
 Dự án làm video ngắn tiếng Việt không lộ mặt bằng Studio (Python/FFmpeg/React). Chạy: `python studio.py` -> http://localhost:8765.
 
-**Đọc trước khi làm bất cứ gì:** `.claude/skills/vn-legend-shorts/SKILL.md` (markdown thường, AI nào cũng đọc được). Trong đó có: quy trình, định dạng script.json, luật hình, hook, giọng, bộ nhớ đệm, đăng ký cảnh ở 4 chỗ, danh sách video đã làm, thể loại kể chuyện lừa đảo (phong cách mực), lỗi đã gặp.
+**Đọc trước khi làm bất cứ gì:** `.claude/skills/vn-legend-shorts/SKILL.md` (kỹ thuật dùng chung + truyền thuyết/tin tức kiểu cắt giấy) và `.claude/skills/vn-scam-story-shorts/SKILL.md` (kể chuyện lừa đảo, phong cách mực). Là markdown thường, AI nào cũng đọc được: quy trình, định dạng script.json, luật hình, hook, giọng, bộ nhớ đệm, đăng ký cảnh ở 4 chỗ, lỗi đã gặp.
 
 Quy tắc cốt lõi: tiết kiệm token; người dùng chốt hook; cho xem ảnh/nháp trước khi xuất; không đăng bài thay người dùng; không tự thêm Co-Authored-By; màu nền chọn theo loại nội dung.
 
 ## Giao việc cho opencode (kinh nghiệm thực tế, cập nhật khi gặp thêm)
-- Chạy nền không tương tác: `opencode run --auto --title "<tên>" "Read D:\idea	ools\opencode_tasks\oc_task.md and do exactly what it says"`; việc dài để trong file `tools/opencode_tasks/oc_task*.md` (mẫu giai đoạn 1 viết script, giai đoạn 2 vẽ cảnh + dựng nháp) (đường dẫn máy này có dấu `'`, đừng dán vào dòng lệnh). Terminal panel chỉ cho gõ một dòng ASCII, nên dùng `--prompt` trỏ tới file.
+- Chạy nền không tương tác: `opencode run --auto --title "<tên>" "Read D:\idea\tools\opencode_tasks\oc_task.md and do exactly what it says"`; việc dài để trong file `tools/opencode_tasks/oc_task*.md` (mẫu giai đoạn 1 viết script, giai đoạn 2 vẽ cảnh + dựng nháp) (đường dẫn máy này có dấu `'`, đừng dán vào dòng lệnh). Terminal panel chỉ cho gõ một dòng ASCII, nên dùng `--prompt` trỏ tới file.
 - Model mặc định miễn phí (big-pickle). Tách việc thành giai đoạn nhỏ, mỗi giai đoạn một file nhiệm vụ, có điều kiện dừng ("KHÔNG làm gì khác"). Giai đoạn 1 (viết script + nguồn) mất ~4 phút; giai đoạn 2 (vẽ cảnh + dựng nháp) lâu hơn.
 - Chỗ nó mất thời gian: (1) tra web bằng cách tự gọi WebFetch vào Bing/Google/DuckDuckGo (bị chặn, thử đi thử lại hàng chục lần): nên chỉ rõ trang báo cụ thể hoặc cho sẵn từ khóa/URL; (2) lệnh shell sai cú pháp Windows (dùng `taskkill /PID` kiểu cmd trong Git Bash, phải `//PID`; `/dev/null`, `$VAR`): dặn "shell là Git Bash trên Windows, dùng `//` cho cờ taskkill, hoặc dùng PowerShell"; (3) tắt tiến trình Studio: nó tự kill cây tiến trình, nên dặn rõ chỉ kill đúng PID của studio.py.
 - Luôn dặn: không git, không render final, không sửa file ngoài phạm vi. Người kiểm lại nguồn/số liệu và xem ảnh trước khi dựng.
