@@ -117,6 +117,7 @@ Chạy lại Studio: tắt đúng tiến trình `studio.py` và `multiprocessing
 | 3 | Thánh Gióng | `thanh_giong` | `chars_tg.py`, `scenes_tg.py` (`tg_`) | Tại sao Thánh Gióng đến ba tuổi, mà vẫn chưa biết nói? |
 | 4 | Sơn Tinh – Thủy Tinh | `son_tinh` | `chars_st.py`, `scenes_st.py` (`st_`) | Tại sao mỗi năm, Thủy Tinh lại dâng nước đánh Sơn Tinh? |
 | 5 | Mai An Tiêm | `mai_an_tiem` | `chars_ma.py`, `scenes_ma.py` (`ma_`) | Mai an tiêm đã nói gì, mà bị vua đày ra đảo hoang? |
+6. **Nvidia: CEO từ chức rồi quay lại** (`projects/nvidia_ceo`, dạng tin tức giải thích, nhân vật `src/chars_nv.py`, cảnh `src/scenes_nv.py` tiền tố `nv_`), đang ở bản nháp. Hook: "Vì sao CEO Nvidia từ chức rồi quay lại chỉ sau mười một ngày?". Quy tắc cho video tin tức người thật: tra nguồn gốc (thông cáo, CNBC), ghi rõ ai nói (chính thức / có tên / nguồn ẩn danh / cáo buộc chưa xác minh), không khẳng định điều chưa có bằng chứng, không vẽ ai làm điều bị cáo buộc, không đưa người khác bị nhắc trong tin, ghi ngày cập nhật vào caption; nhân vật thật vẽ cắt giấy đơn giản theo trang phục và kiểu tóc người dùng đưa (ảnh tham khảo), không chép khuôn mặt. Ông Huang: tóc bạc chải ngược, kính gọng nửa, áo da đen cổ đứng, tay khoanh, quần dài.
 
 Truyện đề xuất tiếp: Chử Đồng Tử – Tiên Dung, bánh chưng bánh giầy (Lang Liêu), Con Rồng cháu Tiên, Ngô Quyền và trận Bạch Đằng (lịch sử, cần tra nguồn kỹ).
 

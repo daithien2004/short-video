@@ -1,0 +1,185 @@
+{
+ "hook": "Vì sao CEO Nvidia từ chức rồi quay lại chỉ sau mười một ngày?",
+ "hl": [
+  "CEO NVIDIA",
+  "MƯỜI MỘT NGÀY"
+ ],
+ "speed": 1.12,
+ "pause": 0.2,
+ "scenes": [
+  {
+   "text": "Ngày mười hai tháng Mười Một, Nvidia thông báo ông Jensen Huang từ chức Giám đốc điều hành, có hiệu lực ngay, không nêu lý do.",
+   "seq": [
+    "nv_chip",
+    "nv_press",
+    "nv_chair"
+   ],
+   "scene": "nv_chip",
+   "shots": [
+    {
+     "at": 1,
+     "scene": "nv_press"
+    },
+    {
+     "at": 2,
+     "scene": "nv_chair"
+    }
+   ]
+  },
+  {
+   "text": "Trước đó bốn ngày, ông gửi thư cho nhân viên: tôi đã không chung thủy với vợ. Hội đồng quản trị mở điều tra. Lý do là các bản tin rằng ông là mục tiêu của một nỗ lực tình báo nước ngoài. Chưa có bằng chứng nào được công bố cho thấy ông phạm pháp.",
+   "seq": [
+    "nv_letter",
+    "nv_boardroom",
+    "nv_eye",
+    "nv_inquiry"
+   ],
+   "scene": "nv_letter",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "nv_boardroom"
+    },
+    {
+     "at": 4,
+     "scene": "nv_eye"
+    },
+    {
+     "at": 5,
+     "scene": "nv_inquiry"
+    }
+   ]
+  },
+  {
+   "text": "Ngày mười sáu, CNBC dẫn một nguồn tin: hội đồng không tính chuyện đưa ông trở lại. Bảy ngày sau, họ bỏ phiếu nhất trí đưa ông về.",
+   "seq": [
+    "nv_source",
+    "nv_calendar",
+    "nv_vote"
+   ],
+   "scene": "nv_source",
+   "mascot": true,
+   "shots": [
+    {
+     "at": 2,
+     "scene": "nv_calendar"
+    },
+    {
+     "at": 3,
+     "scene": "nv_vote"
+    }
+   ]
+  },
+  {
+   "text": "Điều gì đã đổi trong bảy ngày đó? Hội đồng chỉ nói họ đã nghe ý kiến từ cấp cao của chính phủ Mỹ, và tin ông quay lại không gây rủi ro an ninh quốc gia.",
+   "seq": [
+    "nv_gov",
+    "nv_shield",
+    "nv_question"
+   ],
+   "scene": "nv_gov",
+   "shots": [
+    {
+     "at": 1,
+     "scene": "nv_shield"
+    },
+    {
+     "at": 2,
+     "scene": "nv_question"
+    }
+   ]
+  },
+  {
+   "text": "Ông Trump thì nói thẳng với CNBC: tôi đã làm nên thỏa thuận, tôi đã thuyết phục họ. Ba nguồn tin ẩn danh có cách nói khác. Họ nói lời hứa cá nhân của ông là yếu tố chốt. Hội đồng chưa xác nhận. Ông Trump nói ông Huang không làm gì sai.",
+   "seq": [
+    "nv_phone",
+    "nv_deal",
+    "nv_stamp",
+    "nv_trump"
+   ],
+   "scene": "nv_phone",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "nv_deal"
+    },
+    {
+     "at": 4,
+     "scene": "nv_stamp"
+    },
+    {
+     "at": 5,
+     "scene": "nv_trump"
+    }
+   ]
+  },
+  {
+   "text": "Phe đối lập đặt câu hỏi. Thượng nghị sĩ Schumer hỏi: ông Trump đã biết gì khi mời ông Huang lên chuyên cơ? Theo thư của hai nghị sĩ Wyden và Neal, ông Trump cho Nvidia bán chip sang Trung Quốc để lấy một phần doanh thu. Chưa có xác nhận.",
+   "seq": [
+    "nv_mics",
+    "nv_plane",
+    "nv_letters",
+    "nv_chip_china"
+   ],
+   "scene": "nv_mics",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "nv_plane"
+    },
+    {
+     "at": 4,
+     "scene": "nv_letters"
+    },
+    {
+     "at": 5,
+     "scene": "nv_chip_china"
+    }
+   ]
+  },
+  {
+   "text": "Theo CNBC, cổ phiếu Nvidia mất gần ba mươi ba phần trăm kể từ ngày ông thú nhận chuyện đời tư. Rồi chỉ trong một phiên, ngày ông quay lại, cổ phiếu tăng ba mươi mốt phần trăm.",
+   "seq": [
+    "nv_chart_down",
+    "nv_chart_up",
+    "nv_coins"
+   ],
+   "scene": "nv_chart_down",
+   "shots": [
+    {
+     "at": 1,
+     "scene": "nv_chart_up"
+    },
+    {
+     "at": 2,
+     "scene": "nv_coins"
+    }
+   ]
+  },
+  {
+   "text": "Nhưng một chiến lược gia của Nomura gọi đó là đợt mua mang tính cơ học, và nói nó không bảo đảm điều gì. Giá cổ phiếu hồi phục trong một ngày. Còn sự thật thì phải đợi các buổi làm việc với Quốc hội đầu tháng Mười Hai.",
+   "seq": [
+    "nv_gears",
+    "nv_scale",
+    "nv_huang_back",
+    "nv_december"
+   ],
+   "scene": "nv_gears",
+   "shots": [
+    {
+     "at": 1,
+     "scene": "nv_scale"
+    },
+    {
+     "at": 2,
+     "scene": "nv_huang_back"
+    },
+    {
+     "at": 3,
+     "scene": "nv_december"
+    }
+   ]
+  }
+ ],
+ "cover": "nv_chair"
+}
