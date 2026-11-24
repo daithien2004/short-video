@@ -1,0 +1,177 @@
+{
+ "title": [
+  "VÌ SAO NỎ",
+  "THẦN MẤT PHÉP?"
+ ],
+ "hook": "Với chiếc nỏ thần của An Dương Vương, Trọng Thủy đã làm gì?",
+ "cover": "nt_coloa_night",
+ "speed": 1.12,
+ "scenes": [
+  {
+   "scene": "nt_coloa_night",
+   "text": "Truyền thuyết kể rằng, thành Cổ Loa có một chiếc nỏ thần, bắn một phát hạ cả trăm quân giặc. Vậy mà thành vẫn mất. Vì sao?",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "nt_crossbow_fire"
+    },
+    {
+     "at": 3,
+     "scene": "nt_fall"
+    }
+   ]
+  },
+  {
+   "scene": "nt_king_build",
+   "text": "Vua An Dương Vương xây thành Cổ Loa, nhưng thành xây đến đâu lại đổ đến đó. Rồi thần Kim Quy, một con rùa vàng, hiện lên giúp nhà vua.",
+   "shots": [
+    {
+     "at": 1,
+     "scene": "nt_wall_collapse"
+    },
+    {
+     "at": 2,
+     "scene": "nt_kimquy_rise"
+    }
+   ]
+  },
+  {
+   "scene": "nt_claw",
+   "text": "Thành xây xong, thần Kim Quy tặng nhà vua một chiếc móng của mình để làm lẫy nỏ. Nỏ có móng thần, bắn đâu thắng đó.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "nt_trigger"
+    }
+   ]
+  },
+  {
+   "scene": "nt_north",
+   "text": "Ở phương Bắc, Triệu Đà nhiều lần đem quân sang đánh nhưng đều thua. Ông ta nghĩ ra một kế: xin cưới con gái nhà vua cho con trai mình.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "nt_scheme"
+    }
+   ]
+  },
+  {
+   "scene": "nt_prince_arrive",
+   "text": "Trọng Thủy, con trai Triệu Đà, sang kết hôn với công chúa Mỵ Châu và ở lại thành Cổ Loa. Hai người sống hòa thuận bên nhau.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "nt_wedding"
+    },
+    {
+     "at": 3,
+     "scene": "nt_couple"
+    }
+   ]
+  },
+  {
+   "scene": "nt_show",
+   "text": "Nhưng Trọng Thủy mang theo một nhiệm vụ. Chàng dỗ vợ cho xem nỏ thần, rồi lén đánh tráo chiếc lẫy bằng một chiếc lẫy giả.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "nt_swap"
+    }
+   ],
+   "mascot": true
+  },
+  {
+   "scene": "nt_farewell",
+   "text": "Sau đó Trọng Thủy xin về thăm cha. Lúc chia tay, chàng dặn vợ: nếu có chiến tranh, hãy rắc lông ngỗng dọc đường để làm dấu.",
+   "shots": [
+    {
+     "at": 3,
+     "scene": "nt_feather_road"
+    }
+   ]
+  },
+  {
+   "scene": "nt_invasion",
+   "text": "Triệu Đà đem quân đánh. Nhà vua đem nỏ ra bắn, nhưng nỏ không còn linh nghiệm. Quân giặc tràn vào, nhà vua đưa Mỵ Châu lên ngựa chạy về phương Nam.",
+   "shots": [
+    {
+     "at": 1,
+     "scene": "nt_xbow_fail"
+    },
+    {
+     "at": 3,
+     "scene": "nt_flight"
+    }
+   ]
+  },
+  {
+   "scene": "nt_ride",
+   "text": "Mỵ Châu ngồi sau lưng cha, theo lời chồng rắc lông ngỗng suốt dọc đường. Quân giặc cứ theo dấu lông ngỗng mà đuổi theo.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "nt_chase"
+    }
+   ]
+  },
+  {
+   "scene": "nt_shore",
+   "text": "Đến bờ biển, đường cùng, nhà vua gọi thần Kim Quy. Thần hiện lên nói: kẻ ngồi sau lưng nhà vua chính là giặc. Nhà vua đau đớn rút gươm chém con gái. Trước khi chết, Mỵ Châu khấn: nếu một lòng trung hiếu mà bị lừa dối, xin hóa thành ngọc để rửa nỗi oan.",
+   "shots": [
+    {
+     "at": 3,
+     "scene": "nt_turtle_sea"
+    },
+    {
+     "at": 5,
+     "scene": "nt_sword_silhouette"
+    },
+    {
+     "at": 6,
+     "scene": "nt_prayer",
+     "mood": "huyen"
+    },
+    {
+     "at": 9,
+     "scene": "nt_gem"
+    }
+   ]
+  },
+  {
+   "scene": "nt_sea_part",
+   "text": "Nhà vua theo thần Kim Quy rẽ nước đi xuống biển. Trọng Thủy tìm thấy xác vợ, mang về chôn ở Cổ Loa rồi nhảy xuống giếng. Người đời kể rằng, ngọc trai rửa bằng nước giếng ấy sẽ sáng hơn.",
+   "shots": [
+    {
+     "at": 1,
+     "scene": "nt_search"
+    },
+    {
+     "at": 2,
+     "scene": "nt_well"
+    },
+    {
+     "at": 3,
+     "scene": "nt_pearl"
+    }
+   ]
+  },
+  {
+   "scene": "nt_dig",
+   "text": "Năm một nghìn chín trăm năm mươi chín, ở khu vực thành Cổ Loa, người ta đào được hàng vạn mũi tên đồng. Ngày nay, thành Cổ Loa vẫn còn ở ngoại thành Hà Nội.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "nt_arrows"
+    },
+    {
+     "at": 3,
+     "scene": "nt_coloa_today"
+    }
+   ]
+  }
+ ],
+ "hl": [
+  "NỎ THẦN",
+  "TRỌNG THỦY"
+ ]
+}

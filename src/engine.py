@@ -14,8 +14,9 @@ CACHE = os.path.join(HERE, "cache"); OUT = os.path.join(HERE, "out"); EXPORTS = 
 for d in ("tts", "clips", "audio", "still", "preview"): os.makedirs(os.path.join(CACHE, d), exist_ok=True)
 os.makedirs(OUT, exist_ok=True)
 SR, RATE, Q, TEAR, XF, SHOT_XF = shorts.SR, 1.12, 1 / 15, 0.3, 0.25, 0.3
+PAUSE = 0.20  # seconds of silence after a sentence (a third of it after a comma); user-chosen after comparing with the reference video's rhythm
 MODES = {"draft": dict(fps=15, scale=0.5), "final": dict(fps=30, scale=1.0)}
-CODE = ("engine.py", "build.py", "scenes_hk.py", "scenes_hk2.py", "opening_frames.py", "animate.py", "story2.py", "story3.py", "tulinh.py", "tulinh2.py", "tulinh3.py")
+CODE = ("engine.py", "build.py", "scenes_hk.py", "scenes_hk2.py", "scenes_nt.py", "chars.py", "scenes_tg.py", "chars_tg.py", "scenes_st.py", "chars_st.py", "scenes_ma.py", "chars_ma.py", "opening_frames.py", "animate.py", "story2.py", "story3.py", "tulinh.py", "tulinh2.py", "tulinh3.py")
 _tts_lock = threading.Lock()
 
 
@@ -54,28 +55,29 @@ def voice(ph, gen=True, rate=RATE):
 def missing_phrases(text): return [ph for ph in phrases(text) if not os.path.exists(_rawpath(ph))]
 
 
-def unit(text, gen=True, lead=0.0, min_len=0.0, tail=0.0, rate=RATE):
+def unit(text, gen=True, lead=0.0, min_len=0.0, tail=0.0, rate=RATE, pause=PAUSE, comma=None):
     """Audio + quantised duration + 2-word caption chunks (times relative to the unit start)."""
     t, pieces, words, starts = lead, [np.zeros(int(lead * SR), np.float32)], [], []
     for ph in phrases(text):
         starts.append(t); a = voice(ph, gen, rate)
         if a is None: return None
         d = len(a) / SR; words += shorts.spread(ph, t, t + d)
-        pause = 0.12 if ph[-1] in ".?!" else 0.04; pieces += [a, np.zeros(int(pause * SR), np.float32)]; t += d + pause
+        n_f = int(0.008 * SR); a = a.copy(); a[:n_f] *= np.linspace(0, 1, n_f); a[-n_f:] *= np.linspace(1, 0, n_f)  # 8 ms fades remove joins' clicks
+        pz = pause if ph[-1] in ".?!" else (pause / 3 if comma is None else comma); pieces += [a, np.zeros(int(pz * SR), np.float32)]; t += d + pz
     dur = math.ceil(max(t + tail, min_len) / Q - 1e-9) * Q; pieces.append(np.zeros(max(int(dur * SR) - sum(len(x) for x in pieces), 0), np.float32))
     chunks, cur = [], []
     for w in words:
         cur.append(w)
         if len(cur) == 2 or w[3]: chunks.append(cur); cur = []
     if cur: chunks.append(cur)
-    return dict(audio=np.concatenate(pieces)[:int(dur * SR)], dur=dur, starts=starts, chunks=[(c[0][0], c[-1][1], " ".join(w[2] for w in c)) for c in chunks])
+    return dict(audio=np.concatenate(pieces)[:int(dur * SR)], dur=dur, starts=starts, words=[(w[0], w[1], w[2]) for w in words], chunks=[(c[0][0], c[-1][1], " ".join(w[2] for w in c)) for c in chunks])
 
 
 def plan(sc, gen=True):
     """Units for cover + every scene; None entries when voice is missing and gen=False."""
     n = len(sc["scenes"])
-    r = sc.get("speed", RATE); cover = unit(sc["hook"], gen, lead=0.2, min_len=1.6, rate=r)
-    us = [unit(s["text"], gen, tail=0.6 if i == n - 1 else 0, rate=r) for i, s in enumerate(sc["scenes"])]
+    r = sc.get("speed", RATE); pz = sc.get("pause", PAUSE); cover = unit(sc["hook"], gen, lead=0.2, min_len=1.6, rate=r, pause=pz, comma=sc.get("hook_comma"))
+    us = [unit(s["text"], gen, tail=0.6 if i == n - 1 else 0, rate=r, pause=pz) for i, s in enumerate(sc["scenes"])]
     return cover, us
 
 
@@ -92,7 +94,7 @@ def make_task(sc, k, cover, us, mode, at=None):
     m = MODES[mode]; scs = sc["scenes"]
     if k < 0:
         if cover is None or us[0] is None: return None
-        T = dict(kind="cover", title=sc["title"], dur=cover["dur"], desc0=desc(scs[0], us[0]), dur0=us[0]["dur"], bg=sc.get("cover", scs[0]["scene"]))
+        T = dict(kind="cover", hook=sc["hook"], words=[(round(a, 2), round(b, 2)) for a, b, _ in cover["words"]], dur=cover["dur"], desc0=desc(scs[0], us[0]), dur0=us[0]["dur"], bg=sc.get("cover", scs[0]["scene"]), hl=sc.get("hl"))
     else:
         u = us[k]
         if u is None or (k > 0 and us[k - 1] is None): return None
@@ -153,15 +155,79 @@ def _camera(im, d, lt, dur):
     return im.crop((int(x0), int(y0), int(x0 + w), int(y0 + h))).resize((1080, 1920), Image.BILINEAR)
 
 
+def hook_lines(hook, width=12, hl=None):
+    """Cover text = the spoken hook, word for word. Runs of key words (yellow) and runs of other words (white) never share a line: split at colour changes
+    and at , ? ! . : ; a long run is cut into the fewest, most even lines; two-word names stay on one line. Returns [(text, colour_index 0=yellow 1=white, index_of_first_word)]."""
+    import itertools
+    NAMES = ("THỦY TINH", "SƠN TINH", "MỊ NƯƠNG", "VUA HÙNG", "KIM QUY", "LONG QUÂN", "LÊ LỢI", "LÊ THẬN", "TRỌNG THỦY", "MỴ CHÂU", "TRIỆU ĐÀ")
+    raw = hook.upper().split(); ys = hook_hl(hook, hl); toks, k = [], 0  # (text, number_of_words, first_word_index)
+    while k < len(raw):
+        for L_ in (2,):
+            if k + L_ <= len(raw) and " ".join(raw[k:k + L_]).rstrip(",?!.:") in NAMES: toks.append((" ".join(raw[k:k + L_]), L_, k)); k += L_; break
+        else: toks.append((raw[k], 1, k)); k += 1
+    runs, cur, curc = [], [], None
+    for t in toks:
+        c = 0 if (ys is None or t[2] in ys) else 1
+        if cur and c != curc: runs.append((curc, cur)); cur = []
+        cur.append(t); curc = c
+        if t[0][-1] in ",?!.:": runs.append((curc, cur)); cur = []  # the voice pauses here: never merge across it
+    if cur: runs.append((curc, cur))
+    out = []
+    for c, ws in runs:
+        n = max(1, -(-len(" ".join(t for t, _, _ in ws)) // width)); best = None
+        for cuts in itertools.combinations(range(1, len(ws)), min(n - 1, len(ws) - 1)):
+            parts = [ws[a:b] for a, b in zip((0,) + cuts, cuts + (len(ws),))]; m = max(len(" ".join(t for t, _, _ in x).replace(",", "")) for x in parts)
+            key = (m, sum(len(" ".join(t for t, _, _ in x)) ** 2 for x in parts), len(parts[-1]) == 1)
+            if best is None or key < best[0]: best = (key, parts)
+        for part in best[1]: out.append((" ".join(t for t, _, _ in part).replace(",", ""), c, part[0][2]))
+    return out
+
+
+NAMES_HL = ("THỦY TINH", "SƠN TINH", "MỊ NƯƠNG", "VUA HÙNG", "KIM QUY", "AN DƯƠNG VƯƠNG", "TRỌNG THỦY", "MỴ CHÂU", "TRIỆU ĐÀ", "LONG QUÂN", "LÊ LỢI", "LÊ THẬN")
+
+
+def hook_hl(hook, hl=None):
+    """Indices of hook words drawn yellow (the rest white). hl = list of key phrases from the script; default = character names; none found -> None (all yellow)."""
+    norm = lambda x: x.upper().strip(",?!.:")
+    ws = [norm(w) for w in hook.split()]; ys = set()
+    for ph in (hl if hl else NAMES_HL):
+        p_ = [norm(w) for w in ph.split()]
+        for i in range(len(ws) - len(p_) + 1):
+            if ws[i:i + len(p_)] == p_: ys.update(range(i, i + len(p_)))
+    return ys or None
+
+
+def _hook_layer(B, T, t):
+    """Sticker-style hook lines; each line pops in when its first word is spoken (the first line is already there at frame 0)."""
+    lines = hook_lines(T["hook"], hl=T.get("hl")); font = B.font; Fb = B.F_BLACK; ink = B.INK
+    L_ = B.Image.new("RGBA", (B.W, 820), (0, 0, 0, 0)); d = B.ImageDraw.Draw(L_); sz = 108
+    while sz > 60 and max(d.textlength(tx, font=font(Fb, sz)) for tx, _, _ in lines) > 840: sz -= 6
+    f = font(Fb, sz); lh = int(sz * 1.18)
+    t0s = [0.0 if j == 0 else max(T["words"][min(wi, len(T["words"]) - 1)][0] - 0.1, 0.0) for j, (_, _, wi) in enumerate(lines)]
+    cur = max(j for j in range(len(lines)) if t >= t0s[j])  # one line at a time: the new line replaces the old one
+    for j, (tx, cl, wi) in enumerate(lines):
+        if j != cur: continue
+        u = (t - t0s[j]) / 0.18
+        k = 0.8 + 0.2 * min(u, 1) + (0.08 * math.sin(min(u, 1) * math.pi))
+        row = B.Image.new("RGBA", (B.W, lh + 80), (0, 0, 0, 0)); rd = B.ImageDraw.Draw(row); xy = (B.W / 2, (lh + 80) / 2)
+        col = (255, 216, 77, 255) if cl == 0 else (255, 255, 255, 255)  # one colour per line: yellow = key words, white = the rest
+        rd.text(xy, tx, font=f, fill="white", anchor="mm", stroke_width=int(sz * .21), stroke_fill="white"); rd.text(xy, tx, font=f, fill=ink, anchor="mm", stroke_width=int(sz * .1), stroke_fill=ink); rd.text(xy, tx, font=f, fill=col, anchor="mm")
+        if k != 1: row = row.resize((max(int(row.width * k), 2), max(int(row.height * k), 2)), B.Image.LANCZOS)
+        L_.alpha_composite(row, (int(B.W / 2 - row.width / 2), int((lh + 80) / 2 - row.height / 2)))
+    return L_
+
+
 def _cover(T, t):
-    """Cover: background keeps drifting; mascot rises from the bottom, holds, switches pose, sinks."""
-    c = _ctx(); B = c["B"]; d0 = T["desc0"]; L1, L2 = T["title"]
+    """Cover: background keeps drifting; hook text pops in line by line with the voice; mascot rises from the bottom, holds, switches pose, sinks."""
+    c = _ctx(); B = c["B"]; d0 = T["desc0"]
     if T["bg"] not in c["cb"]: c["cb"][T["bg"]] = (c["reg"][T["bg"]](), B.S2.sword_glow(540, 1150, 380))
     data, gl = c["cb"][T["bg"]]
     u = min(max((t - 1.0) / 0.6, 0), 1); im = B.S2.frame({"data": data}, 1.0 + t, 5, c["glow"], c["mist"]).convert("RGBA"); im.alpha_composite(gl)
-    B.title2(im, L1, L2, 1 - .55 * u, -50 * u)
-    v = min(t / 0.45, 1); rise = 1250 * (1 - v) ** 3  # mascot slides up from below the frame (ease-out, no overshoot so its cut bottom never shows), holds, switches pose, then sinks
-    B.mascot(im, 0 if t < 0.7 else 1, 1150, B.CX, int(300 * u + 260 * max(u - .5, 0) + rise) + 26, 0 if t < 0.7 else 2)
+    hl = _hook_layer(B, T, t); lw = hook_lines(T["hook"], hl=T.get("hl"))[-1][2]; tf = max(1.0, T["words"][min(lw, len(T["words"]) - 1)][0] + 0.7); uf = min(max((t - tf) / 0.6, 0), 1)  # fade only after the last line has been read
+    if uf > 0: hl.putalpha(hl.split()[3].point(lambda v: int(v * (1 - .55 * uf))))
+    im.alpha_composite(hl, (0, 680 - int(50 * uf)))
+    v = min(t / 1.0, 1); rise = 1250 * (1 - v) ** 3  # mascot slides up from below the frame (ease-out, no overshoot so its cut bottom never shows), holds, switches pose, then sinks
+    B.mascot(im, 0 if t < 1.3 else 1, 1150, B.CX, int(rise) + 26, 0 if t < 1.3 else 2)
     if t > T["dur"] - TEAR: u = (t - (T["dur"] - TEAR)) / TEAR; im = B.torn_wipe(im, _raw(d0, 0, T["dur0"]), (B.W + 40) * (1 - u) - 60 * u)
     return im
 
@@ -238,8 +304,8 @@ def _wav(name, arr):
 
 def scene_audio(sc, k, cb=lambda *a: None):
     """Voice for one scene only (cheapest loop: edit the words, listen)."""
-    cb("Tạo giọng", 0, 1); u = unit(sc["scenes"][k]["text"], rate=sc.get("speed", RATE)); cb("Xong", 1, 1)
-    return _wav(f"scene_{sha([sc['scenes'][k]['text'], sc.get('speed', RATE)])}.wav", u["audio"]), u["dur"]
+    cb("Tạo giọng", 0, 1); u = unit(sc["scenes"][k]["text"], rate=sc.get("speed", RATE), pause=sc.get("pause", PAUSE)); cb("Xong", 1, 1)
+    return _wav(f"scene_{sha([sc['scenes'][k]['text'], sc.get('speed', RATE), sc.get('pause', PAUSE)])}.wav", u["audio"]), u["dur"]
 
 
 def status(sc):
@@ -277,8 +343,8 @@ def render(sc, mode="draft", name="video", cb=lambda *a: None):
     with open(lst, "w", encoding="utf8") as f: f.writelines(f"file '{clips[k].replace(chr(92), '/')}'\n" for k in [-1] + list(range(len(us))))
     if mode == "final": os.makedirs(os.path.join(EXPORTS, name), exist_ok=True); out = os.path.join(EXPORTS, name, f"{name}_{time.strftime('%Y%m%d_%H%M%S')}.mp4")  # finals are versioned, never overwritten
     else: os.makedirs(os.path.join(PREVIEWS, name), exist_ok=True); out = os.path.join(PREVIEWS, name, f"{name}_{mode}.mp4")  # previews live apart from finals
-    subprocess.run([shorts.FFMPEG, "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", lst, "-i", wav, "-c:v", "copy", "-af", "acompressor=threshold=-26dB:ratio=3.5:attack=5:release=90:makeup=6,loudnorm=I=-16.5:TP=-1.5:LRA=7",
-                    "-c:a", "aac", "-b:a", "160k", "-shortest", out], check=True)
+    subprocess.run([shorts.FFMPEG, "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", lst, "-i", wav, "-c:v", "copy", "-af", "highpass=f=70,loudnorm=I=-16:TP=-1.5:LRA=11,alimiter=limit=0.89",  # light chain: the heavy compressor made the voice sound cracked (user chose this version)
+                    "-c:a", "aac", "-b:a", "160k", "-ar", "48000", "-shortest", out], check=True)
     return out, total
 
 
@@ -287,8 +353,8 @@ def preview_scene(sc, k, cb=lambda *a: None):
     if miss: cb("Tạo giọng", 0, miss)
     us = [None] * len(sc["scenes"])
     for j in (k - 1, k):
-        if j >= 0: us[j] = unit(sc["scenes"][j]["text"], True, tail=0.6 if j == len(us) - 1 else 0, rate=sc.get("speed", RATE))
+        if j >= 0: us[j] = unit(sc["scenes"][j]["text"], True, tail=0.6 if j == len(us) - 1 else 0, rate=sc.get("speed", RATE), pause=sc.get("pause", PAUSE))
     T = make_task(sc, k, None, us, "draft"); p = clip_path(T, "draft"); cb("Vẽ cảnh", 0, 1); pool().submit(render_task, T, p).result()
-    wav = _wav(f"scene_{sha([sc['scenes'][k]['text'], sc.get('speed', RATE)])}.wav", us[k]["audio"]); out = os.path.join(CACHE, "preview", f"scene_{sha([T, code_version()])}.mp4")
+    wav = _wav(f"scene_{sha([sc['scenes'][k]['text'], sc.get('speed', RATE), sc.get('pause', PAUSE)])}.wav", us[k]["audio"]); out = os.path.join(CACHE, "preview", f"scene_{sha([T, code_version()])}.mp4")
     if not os.path.exists(out): subprocess.run([shorts.FFMPEG, "-y", "-loglevel", "error", "-i", p, "-i", wav, "-c:v", "copy", "-c:a", "aac", "-shortest", out], check=True)
     return out

@@ -183,5 +183,5 @@ def registry():
     global _X
     if _X is None: _X = X.build_scenes()
     mid = lambda i: _X[i]["mid"]
-    import scenes_hk2
-    return {**scenes_hk2.REG, "tower": mid(0), "victory": mid(1), "boat": mid(2), "turtle": mid(3), "sword": mid(4), "returned": mid(5), "dragon": mid(6), "banners": banners, "fisher": fisher, "banyan": banyan, "longquan": longquan, "army": army, "hanoi": hanoi, "underwater": underwater, "coloa": coloa, "enemy": enemy, "throne": throne, "ripple": mid(5)}
+    import scenes_hk2, scenes_nt, scenes_tg, scenes_st, scenes_ma
+    return {**scenes_hk2.REG, **scenes_nt.REG, **scenes_tg.REG, **scenes_st.REG, **scenes_ma.REG, "tower": mid(0), "victory": mid(1), "boat": mid(2), "turtle": mid(3), "sword": mid(4), "returned": mid(5), "dragon": mid(6), "banners": banners, "fisher": fisher, "banyan": banyan, "longquan": longquan, "army": army, "hanoi": hanoi, "underwater": underwater, "coloa": coloa, "enemy": enemy, "throne": throne, "ripple": mid(5)}

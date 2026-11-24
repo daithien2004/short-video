@@ -1,0 +1,223 @@
+{
+ "hook": "Mai an tiêm đã nói gì, mà bị vua đày ra đảo hoang?",
+ "hl": [
+  "MAI AN TIÊM",
+  "ĐẢO HOANG"
+ ],
+ "cover": "ma_island_empty",
+ "speed": 1.12,
+ "pause": 0.2,
+ "scenes": [
+  {
+   "scene": "ma_court",
+   "text": "Truyền thuyết kể rằng, thời vua Hùng có một chàng trai tên là Mai An Tiêm. Chàng được nhà vua quý mến, ban cho nhiều của cải và cuộc sống đầy đủ.",
+   "seq": [
+    "ma_court",
+    "ma_home",
+    "ma_family"
+   ],
+   "shots": [
+    {
+     "at": 2,
+     "scene": "ma_home"
+    },
+    {
+     "at": 3,
+     "scene": "ma_family"
+    }
+   ]
+  },
+  {
+   "scene": "ma_boast",
+   "text": "Một hôm, chàng nói rằng, của cải trong nhà là nhờ sức mình làm ra, chứ không phải nhờ ơn vua. Có kẻ nghe được, liền tâu lại với nhà vua.",
+   "seq": [
+    "ma_boast",
+    "ma_informer",
+    "ma_tell_king"
+   ],
+   "shots": [
+    {
+     "at": 3,
+     "scene": "ma_informer"
+    },
+    {
+     "at": 5,
+     "scene": "ma_tell_king"
+    }
+   ]
+  },
+  {
+   "scene": "ma_angry_king",
+   "text": "Nhà vua nổi giận, đày cả gia đình Mai An Tiêm ra một hòn đảo hoang, chỉ cho ít lương thực. Vua nói rằng, nếu thật sự tài giỏi thì hãy tự mà sống.",
+   "seq": [
+    "ma_angry_king",
+    "ma_exile_boat",
+    "ma_island_arrive"
+   ],
+   "shots": [
+    {
+     "at": 2,
+     "scene": "ma_exile_boat"
+    },
+    {
+     "at": 4,
+     "scene": "ma_island_arrive"
+    }
+   ]
+  },
+  {
+   "scene": "ma_island_empty",
+   "text": "Trên đảo không một bóng người. Lương thực cạn dần, cả nhà lo lắng. Nhưng Mai An Tiêm vẫn không chịu bỏ cuộc.",
+   "seq": [
+    "ma_island_empty",
+    "ma_food_low",
+    "ma_resolve"
+   ],
+   "mascot": true,
+   "shots": [
+    {
+     "at": 1,
+     "scene": "ma_food_low"
+    },
+    {
+     "at": 3,
+     "scene": "ma_resolve"
+    }
+   ]
+  },
+  {
+   "scene": "ma_birds",
+   "text": "Bỗng một ngày, có đàn chim lạ từ phương xa bay đến, ăn một thứ hạt đen rồi nhả xuống bãi cát. Mai An Tiêm nhặt những hạt ấy, đem gieo thử.",
+   "seq": [
+    "ma_birds",
+    "ma_seeds",
+    "ma_sowing"
+   ],
+   "shots": [
+    {
+     "at": 2,
+     "scene": "ma_seeds"
+    },
+    {
+     "at": 3,
+     "scene": "ma_sowing"
+    }
+   ]
+  },
+  {
+   "scene": "ma_sprout",
+   "text": "Hạt nảy mầm, bò lan thành dây, kết những quả tròn to. Bổ ra, ruột đỏ thắm, ăn vào ngọt mát. Người ta gọi đó là dưa hấu.",
+   "seq": [
+    "ma_sprout",
+    "ma_vines",
+    "ma_cut",
+    "ma_taste"
+   ],
+   "shots": [
+    {
+     "at": 2,
+     "scene": "ma_vines"
+    },
+    {
+     "at": 4,
+     "scene": "ma_cut"
+    },
+    {
+     "at": 6,
+     "scene": "ma_taste"
+    }
+   ]
+  },
+  {
+   "scene": "ma_harvest",
+   "text": "Mai An Tiêm mừng rỡ, trồng thật nhiều. Khi có thuyền buôn đi qua, chàng đổi dưa lấy gạo và những thứ cần dùng. Cuộc sống nơi đảo hoang dần đủ đầy.",
+   "seq": [
+    "ma_harvest",
+    "ma_ship",
+    "ma_trade",
+    "ma_rich_island"
+   ],
+   "shots": [
+    {
+     "at": 2,
+     "scene": "ma_ship"
+    },
+    {
+     "at": 3,
+     "scene": "ma_trade"
+    },
+    {
+     "at": 4,
+     "scene": "ma_rich_island"
+    }
+   ]
+  },
+  {
+   "scene": "ma_rumor",
+   "text": "Tiếng đồn về thứ quả lạ lan khắp nơi. Rồi quả ấy được dâng lên nhà vua. Nhà vua ăn thử, thấy ngon, mới biết đó là do Mai An Tiêm trồng trên đảo hoang.",
+   "seq": [
+    "ma_rumor",
+    "ma_gift_king",
+    "ma_king_eat"
+   ],
+   "shots": [
+    {
+     "at": 1,
+     "scene": "ma_gift_king"
+    },
+    {
+     "at": 4,
+     "scene": "ma_king_eat"
+    }
+   ]
+  },
+  {
+   "scene": "ma_king_realize",
+   "text": "Vua hiểu ra chàng không hề nói ngoa, bèn sai thuyền ra đảo đón cả gia đình về kinh thành.",
+   "seq": [
+    "ma_king_realize",
+    "ma_royal_boat",
+    "ma_return_home"
+   ],
+   "shots": [
+    {
+     "at": 1,
+     "scene": "ma_royal_boat"
+    }
+   ]
+  },
+  {
+   "scene": "ma_seed_give",
+   "text": "Mai An Tiêm đem hạt giống phát cho dân khắp nơi. Từ đó dưa hấu được trồng rộng rãi, và ông được nhiều người coi là ông tổ nghề trồng dưa hấu.",
+   "seq": [
+    "ma_seed_give",
+    "ma_fields",
+    "ma_ancestor"
+   ],
+   "shots": [
+    {
+     "at": 1,
+     "scene": "ma_fields"
+    },
+    {
+     "at": 2,
+     "scene": "ma_ancestor"
+    }
+   ]
+  },
+  {
+   "scene": "ma_nga_son",
+   "text": "Ngày nay, ở Nga Sơn, Thanh Hóa, vẫn còn đền thờ Mai An Tiêm. Tương truyền, nơi ấy chính là hòn đảo ngày xưa.",
+   "seq": [
+    "ma_nga_son",
+    "ma_temple"
+   ],
+   "shots": [
+    {
+     "at": 4,
+     "scene": "ma_temple"
+    }
+   ]
+  }
+ ]
+}

@@ -3,7 +3,7 @@
   "TRUYỀN THUYẾT",
   "HỒ HOÀN KIẾM"
  ],
- "hook": "Truyền thuyết về Hồ Hoàn Kiếm?",
+ "hook": "Thanh gươm thần của Lê Lợi, rốt cuộc đã đi đâu?",
  "out": "out/hoan_kiem_preview.mp4",
  "scenes": [
   {
@@ -183,5 +183,10 @@
   }
  ],
  "cover": "tower",
- "speed": 1.12
+ "speed": 1.12,
+ "pause": 0.2,
+ "hl": [
+  "THANH GƯƠM THẦN",
+  "LÊ LỢI"
+ ]
 }

@@ -1,0 +1,166 @@
+{
+ "title": [
+  "BA TUỔI CHƯA BIẾT NÓI,",
+  "SAO CỨU ĐƯỢC NƯỚC?"
+ ],
+ "hook": "Tại sao Thánh Gióng đến ba tuổi, mà vẫn chưa biết nói?",
+ "cover": "tg_giant_shadow",
+ "speed": 1.12,
+ "scenes": [
+  {
+   "scene": "tg_village",
+   "text": "Truyền thuyết kể rằng, ở làng Phù Đổng có một cậu bé lên ba tuổi mà vẫn không biết nói, không biết cười, chỉ nằm im một chỗ. Vậy mà cậu lại cứu được cả đất nước.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "tg_boy_lying"
+    },
+    {
+     "at": 4,
+     "scene": "tg_giant_shadow"
+    }
+   ]
+  },
+  {
+   "scene": "tg_footprint",
+   "text": "Cậu bé ra đời rất kỳ lạ. Một hôm, bà mẹ ra đồng, thấy một dấu chân to khác thường, liền đặt chân mình vào thử. Về nhà, bà mang thai, và mười hai tháng sau mới sinh ra cậu.",
+   "shots": [
+    {
+     "at": 3,
+     "scene": "tg_mother_foot"
+    },
+    {
+     "at": 5,
+     "scene": "tg_baby"
+    }
+   ]
+  },
+  {
+   "scene": "tg_invasion",
+   "text": "Bấy giờ, giặc Ân từ phương Bắc kéo sang xâm lược. Vua Hùng lo lắng, sai sứ giả đi khắp nơi tìm người tài giỏi đánh giặc cứu nước.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "tg_king_worry"
+    },
+    {
+     "at": 3,
+     "scene": "tg_envoy_ride"
+    }
+   ]
+  },
+  {
+   "scene": "tg_envoy_arrive",
+   "text": "Sứ giả đến làng Phù Đổng. Bỗng cậu bé cất tiếng nói đầu tiên: Mẹ ơi, mời sứ giả vào đây. Cậu nhờ sứ giả về tâu với vua, sắm cho cậu một con ngựa sắt, một cái roi sắt và một bộ áo giáp sắt.",
+   "mascot": true,
+   "shots": [
+    {
+     "at": 2,
+     "scene": "tg_boy_speaks"
+    },
+    {
+     "at": 5,
+     "scene": "tg_iron_gear"
+    }
+   ]
+  },
+  {
+   "scene": "tg_eating",
+   "text": "Từ hôm đó, cậu bé lớn nhanh như thổi. Cơm ăn bao nhiêu cũng không no, áo mặc bao nhiêu cũng không vừa. Bà con trong làng ai cũng góp gạo nuôi cậu.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "tg_growing"
+    },
+    {
+     "at": 4,
+     "scene": "tg_rice_baskets"
+    }
+   ]
+  },
+  {
+   "scene": "tg_gear_arrive",
+   "text": "Khi ngựa sắt, roi sắt và áo giáp sắt được đem đến, cậu vươn vai một cái, bỗng hóa thành một tráng sĩ cao lớn khác thường. Cậu mặc giáp, cầm roi, nhảy lên ngựa.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "tg_stretch"
+    },
+    {
+     "at": 4,
+     "scene": "tg_mount"
+    }
+   ]
+  },
+  {
+   "scene": "tg_horse_fire",
+   "text": "Ngựa sắt hí vang, phun lửa. Tráng sĩ phi thẳng ra trận, đánh quân giặc tan tác.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "tg_battle"
+    }
+   ]
+  },
+  {
+   "scene": "tg_staff_break",
+   "text": "Giữa trận chiến, roi sắt bị gãy. Tráng sĩ liền nhổ những bụi tre bên đường, quật vào quân giặc.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "tg_bamboo"
+    },
+    {
+     "at": 3,
+     "scene": "tg_bamboo_swing"
+    }
+   ]
+  },
+  {
+   "scene": "tg_flee",
+   "text": "Giặc Ân tan vỡ, chạy tán loạn. Đánh xong, tráng sĩ phi ngựa lên núi Sóc, cởi bỏ áo giáp sắt, rồi cả người lẫn ngựa bay thẳng lên trời.",
+   "shots": [
+    {
+     "at": 3,
+     "scene": "tg_soc_mountain"
+    },
+    {
+     "at": 5,
+     "scene": "tg_fly"
+    }
+   ]
+  },
+  {
+   "scene": "tg_king_title",
+   "text": "Vua nhớ ơn, phong cậu là Phù Đổng Thiên Vương, và cho lập đền thờ ngay ở quê nhà. Người ta còn kể rằng, những bụi tre bị lửa ngựa phun cháy xém, từ đó mới ngả sang màu vàng.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "tg_temple"
+    },
+    {
+     "at": 4,
+     "scene": "tg_bamboo_gold"
+    }
+   ]
+  },
+  {
+   "scene": "tg_festival",
+   "text": "Hằng năm, người dân vẫn mở hội Gióng để tưởng nhớ vị anh hùng. Năm hai nghìn không trăm mười, hội Gióng ở đền Phù Đổng và đền Sóc, được UNESCO ghi danh là di sản văn hóa phi vật thể của nhân loại.",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "tg_lanterns"
+    },
+    {
+     "at": 4,
+     "scene": "tg_heritage"
+    }
+   ]
+  }
+ ],
+ "hl": [
+  "THÁNH GIÓNG",
+  "BA TUỔI"
+ ]
+}

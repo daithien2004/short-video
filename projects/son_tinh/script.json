@@ -1,0 +1,237 @@
+{
+ "hook": "Tại sao mỗi năm, Thủy Tinh lại dâng nước đánh Sơn Tinh?",
+ "cover": "st_water_mountain",
+ "speed": 1.12,
+ "pause": 0.2,
+ "scenes": [
+  {
+   "scene": "st_palace",
+   "text": "Truyền thuyết kể rằng, vua Hùng có một người con gái tên là Mị Nương, nhan sắc tuyệt trần. Nhà vua muốn chọn cho nàng một người chồng xứng đáng.",
+   "seq": [
+    "st_palace",
+    "st_mi_nuong",
+    "st_king_pick"
+   ],
+   "shots": [
+    {
+     "at": 2,
+     "scene": "st_mi_nuong"
+    },
+    {
+     "at": 3,
+     "scene": "st_king_pick"
+    }
+   ]
+  },
+  {
+   "scene": "st_suitors_arrive",
+   "text": "Bỗng có hai chàng trai đến cầu hôn. Một người là Sơn Tinh, chúa vùng núi Tản Viên. Người kia là Thủy Tinh, chúa vùng biển cả. Cả hai đều tài giỏi, phép thuật phi thường.",
+   "seq": [
+    "st_suitors_arrive",
+    "st_son_tinh",
+    "st_thuy_tinh",
+    "st_power"
+   ],
+   "shots": [
+    {
+     "at": 1,
+     "scene": "st_son_tinh"
+    },
+    {
+     "at": 3,
+     "scene": "st_thuy_tinh"
+    },
+    {
+     "at": 5,
+     "scene": "st_power"
+    }
+   ]
+  },
+  {
+   "scene": "st_king_dilemma",
+   "text": "Vua Hùng khó nghĩ, bèn ra điều kiện: ai mang sính lễ đến trước thì được rước công chúa. Sính lễ gồm voi chín ngà, gà chín cựa, ngựa chín hồng mao.",
+   "seq": [
+    "st_king_dilemma",
+    "st_gift_elephant",
+    "st_gift_rooster",
+    "st_gift_horse"
+   ],
+   "shots": [
+    {
+     "at": 2,
+     "scene": "st_gift_elephant"
+    },
+    {
+     "at": 3,
+     "scene": "st_gift_rooster"
+    },
+    {
+     "at": 4,
+     "scene": "st_gift_horse"
+    }
+   ]
+  },
+  {
+   "scene": "st_dawn_gifts",
+   "text": "Sáng hôm sau, Sơn Tinh mang đủ sính lễ đến trước. Nhà vua gả Mị Nương cho chàng, và Sơn Tinh đưa nàng về núi Tản Viên.",
+   "seq": [
+    "st_dawn_gifts",
+    "st_wedding",
+    "st_to_mountain"
+   ],
+   "shots": [
+    {
+     "at": 2,
+     "scene": "st_wedding"
+    },
+    {
+     "at": 3,
+     "scene": "st_to_mountain"
+    }
+   ]
+  },
+  {
+   "scene": "st_late_arrival",
+   "text": "Thủy Tinh đến sau, thấy mất vợ thì vô cùng tức giận. Chàng hô mưa gọi gió, dâng nước đuổi theo để đánh Sơn Tinh.",
+   "seq": [
+    "st_late_arrival",
+    "st_angry",
+    "st_summon"
+   ],
+   "mascot": true,
+   "shots": [
+    {
+     "at": 2,
+     "scene": "st_angry"
+    },
+    {
+     "at": 3,
+     "scene": "st_summon"
+    }
+   ]
+  },
+  {
+   "scene": "st_flood_fields",
+   "text": "Nước sông dâng cao, ngập ruộng đồng, ngập nhà cửa. Nước cuồn cuộn bủa vây quanh núi. Tôm binh cua tướng ào ạt tiến lên.",
+   "seq": [
+    "st_flood_fields",
+    "st_flood_houses",
+    "st_water_mountain",
+    "st_crab_army"
+   ],
+   "shots": [
+    {
+     "at": 1,
+     "scene": "st_flood_houses"
+    },
+    {
+     "at": 3,
+     "scene": "st_water_mountain"
+    },
+    {
+     "at": 4,
+     "scene": "st_crab_army"
+    }
+   ]
+  },
+  {
+   "scene": "st_son_calm",
+   "text": "Sơn Tinh không hề nao núng. Chàng bốc từng quả đồi, dời từng dãy núi, chặn dòng nước lũ. Nước dâng cao bao nhiêu, núi đồi lại cao lên bấy nhiêu.",
+   "seq": [
+    "st_son_calm",
+    "st_lift_hill",
+    "st_block_water",
+    "st_hills_rise"
+   ],
+   "shots": [
+    {
+     "at": 1,
+     "scene": "st_lift_hill"
+    },
+    {
+     "at": 3,
+     "scene": "st_block_water"
+    },
+    {
+     "at": 5,
+     "scene": "st_hills_rise"
+    }
+   ]
+  },
+  {
+   "scene": "st_clash",
+   "text": "Hai bên đánh nhau suốt nhiều ngày đêm. Cuối cùng, sức Thủy Tinh cạn kiệt, đành rút quân về biển.",
+   "seq": [
+    "st_clash",
+    "st_tired",
+    "st_retreat"
+   ],
+   "shots": [
+    {
+     "at": 1,
+     "scene": "st_tired"
+    },
+    {
+     "at": 3,
+     "scene": "st_retreat"
+    }
+   ]
+  },
+  {
+   "scene": "st_vow",
+   "text": "Nhưng Thủy Tinh vẫn không nguôi giận. Từ đó, năm nào chàng cũng dâng nước đánh Sơn Tinh, và lần nào cũng thua.",
+   "seq": [
+    "st_vow",
+    "st_every_year",
+    "st_loses"
+   ],
+   "shots": [
+    {
+     "at": 2,
+     "scene": "st_every_year"
+    },
+    {
+     "at": 3,
+     "scene": "st_loses"
+    }
+   ]
+  },
+  {
+   "scene": "st_river_rise",
+   "text": "Người xưa tin rằng, đó là lý do mỗi mùa mưa bão, nước sông lại dâng lên. Nhiều người cho rằng, truyền thuyết còn phản ánh cuộc chống lũ lụt của người dân vùng đồng bằng sông Hồng.",
+   "seq": [
+    "st_river_rise",
+    "st_dike",
+    "st_delta"
+   ],
+   "shots": [
+    {
+     "at": 2,
+     "scene": "st_dike"
+    },
+    {
+     "at": 4,
+     "scene": "st_delta"
+    }
+   ]
+  },
+  {
+   "scene": "st_bavi",
+   "text": "Ngày nay, núi Ba Vì ở Hà Nội chính là núi Tản Viên trong truyền thuyết, và nơi đây vẫn còn đền thờ Sơn Tinh.",
+   "seq": [
+    "st_bavi",
+    "st_temple"
+   ],
+   "shots": [
+    {
+     "at": 2,
+     "scene": "st_temple"
+    }
+   ]
+  }
+ ],
+ "hl": [
+  "THỦY TINH",
+  "SƠN TINH"
+ ]
+}
