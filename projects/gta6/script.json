@@ -1,0 +1,93 @@
+{
+ "hook": "GTA 6 tốn hơn một tỷ đô. Ngày đầu bán được bao nhiêu?",
+ "hl": [
+  "MỘT TỶ ĐÔ",
+  "BAO NHIÊU"
+ ],
+ "cover": "g6_city",
+ "speed": 1.12,
+ "pause": 0.2,
+ "scenes": [
+  {
+   "text": "Con số hơn một tỷ đô là ước tính của một nhà phân tích hãng Roth, không phải con số công ty công bố. Từ GTA 5 đến giờ là mười ba năm, và ngày ra mắt đã bị hoãn hai lần.",
+   "seq": [
+    "g6_money",
+    "g6_clock",
+    "g6_delay"
+   ],
+   "scene": "g6_money",
+   "shots": [
+    {
+     "at": 1,
+     "scene": "g6_clock"
+    },
+    {
+     "at": 3,
+     "scene": "g6_delay"
+    }
+   ]
+  },
+  {
+   "text": "Trước ngày ra mắt, công ty nghiên cứu thị trường Sensor Tower ước tính có hơn mười hai triệu lượt đặt trước. Ngân hàng Morgan Stanley dự báo bán bốn mươi triệu bản đến tháng Ba năm sau.",
+   "seq": [
+    "g6_queue",
+    "g6_chart"
+   ],
+   "scene": "g6_queue",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "g6_chart"
+    }
+   ]
+  },
+  {
+   "text": "Ngày mười chín tháng Mười Một, game lên kệ. Nhà phát hành nói điểm đánh giá trên Metacritic là chín mươi chín trên một trăm.",
+   "seq": [
+    "g6_shelf",
+    "g6_score"
+   ],
+   "scene": "g6_shelf",
+   "mascot": true,
+   "shots": [
+    {
+     "at": 2,
+     "scene": "g6_score"
+    }
+   ]
+  },
+  {
+   "text": "Cùng ngày đó, giá cổ phiếu của Take-Two, công ty làm ra game, giảm gần bốn phần trăm. Theo một nhà phân tích, nhiều quỹ đã đặt cược vào đợt giảm này.",
+   "seq": [
+    "g6_down",
+    "g6_bet"
+   ],
+   "scene": "g6_down",
+   "shots": [
+    {
+     "at": 3,
+     "scene": "g6_bet"
+    }
+   ]
+  },
+  {
+   "text": "Hôm sau, Take-Two công bố doanh số. Đó chỉ là tiền người mua bỏ ra, không phải tiền công ty giữ lại, và công ty không nói rõ có gồm cả lượt đặt trước hay không. Còn con số họ đưa ra, theo ước tính của chính công ty, là ba phẩy bảy chín tỷ đô.",
+   "seq": [
+    "g6_release",
+    "g6_split",
+    "g6_big"
+   ],
+   "scene": "g6_release",
+   "shots": [
+    {
+     "at": 3,
+     "scene": "g6_split"
+    },
+    {
+     "at": 5,
+     "scene": "g6_big"
+    }
+   ]
+  }
+ ]
+}
