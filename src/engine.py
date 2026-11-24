@@ -16,7 +16,7 @@ os.makedirs(OUT, exist_ok=True)
 SR, RATE, Q, TEAR, XF, SHOT_XF = shorts.SR, 1.12, 1 / 15, 0.3, 0.25, 0.3
 PAUSE = 0.20  # seconds of silence after a sentence (a third of it after a comma); user-chosen after comparing with the reference video's rhythm
 MODES = {"draft": dict(fps=15, scale=0.5), "final": dict(fps=30, scale=1.0)}
-CODE = ("engine.py", "build.py", "scenes_hk.py", "scenes_hk2.py", "scenes_nt.py", "chars.py", "scenes_tg.py", "chars_tg.py", "scenes_st.py", "chars_st.py", "scenes_ma.py", "chars_ma.py", "scenes_nv.py", "chars_nv.py", "scenes_g6.py", "opening_frames.py", "animate.py", "story2.py", "story3.py", "tulinh.py", "tulinh2.py", "tulinh3.py")
+CODE = ("engine.py", "build.py", "scenes_hk.py", "scenes_hk2.py", "scenes_nt.py", "chars.py", "scenes_tg.py", "chars_tg.py", "scenes_st.py", "chars_st.py", "scenes_ma.py", "chars_ma.py", "scenes_nv.py", "chars_nv.py", "scenes_g6.py", "scenes_sc.py", "scenes_sc2.py", "scenes_sc3.py", "scenes_ink.py", "opening_frames.py", "animate.py", "story2.py", "story3.py", "tulinh.py", "tulinh2.py", "tulinh3.py")
 _tts_lock = threading.Lock()
 
 
@@ -76,7 +76,7 @@ def unit(text, gen=True, lead=0.0, min_len=0.0, tail=0.0, rate=RATE, pause=PAUSE
 def plan(sc, gen=True):
     """Units for cover + every scene; None entries when voice is missing and gen=False."""
     n = len(sc["scenes"])
-    r = sc.get("speed", RATE); pz = sc.get("pause", PAUSE); cover = unit(sc["hook"], gen, lead=0.2, min_len=1.6, rate=r, pause=pz, comma=sc.get("hook_comma"))
+    r = sc.get("speed", RATE); pz = sc.get("pause", PAUSE); cover = unit(sc["hook"], gen, lead=0.2, min_len=1.6, rate=r, pause=pz, comma=sc.get("hook_comma")) if sc.get("hook") else None  # no "hook" key = no cover: the story starts at frame 0
     us = [unit(s["text"], gen, tail=0.6 if i == n - 1 else 0, rate=r, pause=pz) for i, s in enumerate(sc["scenes"])]
     return cover, us
 
@@ -93,7 +93,7 @@ def make_task(sc, k, cover, us, mode, at=None):
     """k = -1 for cover. Returns picklable task dict, or None if voice missing."""
     m = MODES[mode]; scs = sc["scenes"]
     if k < 0:
-        if cover is None or us[0] is None: return None
+        if not sc.get("hook") or cover is None or us[0] is None: return None
         T = dict(kind="cover", hook=sc["hook"], words=[(round(a, 2), round(b, 2)) for a, b, _ in cover["words"]], dur=cover["dur"], desc0=desc(scs[0], us[0]), dur0=us[0]["dur"], bg=sc.get("cover", scs[0]["scene"]), hl=sc.get("hl"))
     else:
         u = us[k]
@@ -316,13 +316,13 @@ def status(sc):
         for mode in MODES:
             T = make_task(sc, k, cover, us, mode); r[mode] = bool(T) and os.path.exists(clip_path(T, mode))
         res.append(r)
-    c = {"tts": cover is not None, "dur": cover["dur"] if cover else None}
+    c = {"tts": cover is not None or not sc.get("hook"), "dur": cover["dur"] if cover else 0}
     for mode in MODES: T = make_task(sc, -1, cover, us, mode); c[mode] = bool(T) and os.path.exists(clip_path(T, mode))
     return {"cover": c, "scenes": res, "total": sum(r["dur"] or 0 for r in res) + (c["dur"] or 0)}
 
 
 def _render_clips(sc, cover, us, mode, cb, only=None):
-    items = [(-1, make_task(sc, -1, cover, us, mode))] + [(k, make_task(sc, k, cover, us, mode)) for k in range(len(us))]
+    items = ([(-1, make_task(sc, -1, cover, us, mode))] if sc.get("hook") else []) + [(k, make_task(sc, k, cover, us, mode)) for k in range(len(us))]
     items = [(k, T, clip_path(T, mode)) for k, T in items if only is None or k in only]
     todo = [x for x in items if not os.path.exists(x[2])]; cb(f"Vẽ {len(todo)}/{len(items)} clip (còn lại dùng bản lưu)", 0, max(len(todo), 1))
     fs = [pool().submit(render_task, T, p) for _, T, p in todo]
@@ -331,16 +331,16 @@ def _render_clips(sc, cover, us, mode, cb, only=None):
 
 
 def render(sc, mode="draft", name="video", cb=lambda *a: None):
-    miss = sum(len(missing_phrases(s["text"])) for s in sc["scenes"]) + len(missing_phrases(sc["hook"]))
+    miss = sum(len(missing_phrases(s["text"])) for s in sc["scenes"]) + len(missing_phrases(sc.get("hook") or ""))
     if miss: cb(f"Tạo giọng ({miss} câu mới)", 0, miss)
     cover, us = plan(sc, gen=True)
     clips = _render_clips(sc, cover, us, mode, cb)
     cb("Ghép clip + trộn âm thanh", 1, 1)
-    units = [cover] + us; voice_ = np.concatenate([u["audio"] for u in units]); total = sum(u["dur"] for u in units)
+    units = ([cover] if cover else []) + us; voice_ = np.concatenate([u["audio"] for u in units]); total = sum(u["dur"] for u in units)
     cuts = list(np.cumsum([u["dur"] for u in units[:-1]]))
     wav = _wav(f"mix_{sha([name, mode])}.wav", shorts.mix(voice_, cuts, total))
     lst = os.path.join(CACHE, "audio", f"list_{mode}.txt")
-    with open(lst, "w", encoding="utf8") as f: f.writelines(f"file '{clips[k].replace(chr(92), '/')}'\n" for k in [-1] + list(range(len(us))))
+    with open(lst, "w", encoding="utf8") as f: f.writelines(f"file '{clips[k].replace(chr(92), '/')}'\n" for k in ([-1] if cover else []) + list(range(len(us))))
     if mode == "final": os.makedirs(os.path.join(EXPORTS, name), exist_ok=True); out = os.path.join(EXPORTS, name, f"{name}_{time.strftime('%Y%m%d_%H%M%S')}.mp4")  # finals are versioned, never overwritten
     else: os.makedirs(os.path.join(PREVIEWS, name), exist_ok=True); out = os.path.join(PREVIEWS, name, f"{name}_{mode}.mp4")  # previews live apart from finals
     subprocess.run([shorts.FFMPEG, "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", lst, "-i", wav, "-c:v", "copy", "-af", "highpass=f=70,loudnorm=I=-16:TP=-1.5:LRA=11,alimiter=limit=0.89",  # light chain: the heavy compressor made the voice sound cracked (user chose this version)

@@ -1,0 +1,212 @@
+{
+ "speed": 1.12,
+ "pause": 0.2,
+ "scenes": [
+  {
+   "text": "Một người phụ nữ ở Tuyên Quang tham gia một nhóm kết bạn trên Facebook. Tại đó, chị quen một người đàn ông. Anh ta gửi cho chị đường link một trò chơi vòng quay may mắn.",
+   "seq": [
+    "sc_group",
+    "sc_phone",
+    "sc_wheel"
+   ],
+   "scene": "sc_group",
+   "shots": [
+    {
+     "at": 1,
+     "scene": "sc_phone"
+    },
+    {
+     "at": 3,
+     "scene": "sc_wheel"
+    }
+   ]
+  },
+  {
+   "text": "Chị chơi thử. Để nhận thưởng, chị phải chuyển tiền. Chị chuyển liên tiếp, và tổng cộng mất gần bảy mươi triệu đồng.",
+   "seq": [
+    "sc_play",
+    "sc_pay",
+    "sc_repeat"
+   ],
+   "scene": "sc_play",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "sc_pay"
+    },
+    {
+     "at": 3,
+     "scene": "sc_repeat"
+    }
+   ]
+  },
+  {
+   "text": "Quà không bao giờ đến. Chị đòi lại tiền và phần thưởng, nhưng đối phương nói phải chuyển thêm hơn một trăm triệu đồng. Lý do là để kiểm tra giao dịch và làm thủ tục rút.",
+   "seq": [
+    "sc_gift",
+    "sc_demand",
+    "sc_check"
+   ],
+   "scene": "sc_gift",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "sc_demand"
+    },
+    {
+     "at": 3,
+     "scene": "sc_check"
+    }
+   ]
+  },
+  {
+   "text": "Chị đến ngân hàng để chuyển khoản tiền đó. Nhân viên thấy chị lo lắng, nên hỏi số tiền dùng vào việc gì.",
+   "seq": [
+    "sc_bank",
+    "sc_counter",
+    "sc_teller"
+   ],
+   "scene": "sc_bank",
+   "shots": [
+    {
+     "at": 1,
+     "scene": "sc_counter"
+    },
+    {
+     "at": 2,
+     "scene": "sc_teller"
+    }
+   ],
+   "mascot": true
+  },
+  {
+   "text": "Nghe chị kể, nhân viên không làm ngơ mà báo công an. Công an cùng ngân hàng xác minh, rồi giải thích cho chị cách thủ đoạn này vận hành. Chị dừng giao dịch, không chuyển thêm đồng nào.",
+   "seq": [
+    "sc_call",
+    "sc_police",
+    "sc_explain",
+    "sc_stop"
+   ],
+   "scene": "sc_call",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "sc_police"
+    },
+    {
+     "at": 3,
+     "scene": "sc_explain"
+    },
+    {
+     "at": 4,
+     "scene": "sc_stop"
+    }
+   ]
+  },
+  {
+   "text": "Số vụ lừa đảo trực tuyến đang giảm, nhưng thiệt hại vẫn lớn. Nửa đầu năm nay, cả nước ghi nhận hơn chín trăm năm mươi vụ, thiệt hại khoảng một nghìn năm trăm tỷ đồng, theo số liệu báo chí dẫn lại.",
+   "seq": [
+    "sc_stats",
+    "sc_clock",
+    "sc_pile"
+   ],
+   "scene": "sc_stats",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "sc_clock"
+    },
+    {
+     "at": 4,
+     "scene": "sc_pile"
+    }
+   ]
+  },
+  {
+   "text": "Và có một kiểu lừa nhắm vào chính người đã mất tiền. Công an nhiều địa phương gọi đó là lừa lần hai. Sau khi bạn mất tiền, có người tự nhận hỗ trợ lấy lại.",
+   "seq": [
+    "sc_bait",
+    "sc_repeat",
+    "sc_mask"
+   ],
+   "scene": "sc_bait",
+   "shots": [
+    {
+     "at": 1,
+     "scene": "sc_repeat"
+    },
+    {
+     "at": 2,
+     "scene": "sc_mask"
+    }
+   ]
+  },
+  {
+   "text": "Họ nói đã xác định được tài khoản lừa đảo, đang phong tỏa dòng tiền, và có thể giúp bạn lấy lại tài sản. Họ giả danh công an, viện kiểm sát hay văn phòng luật sư. Rồi họ yêu cầu bạn đóng phí trước.",
+   "seq": [
+    "sc_freeze",
+    "sc_check",
+    "sc_badges",
+    "sc_fee"
+   ],
+   "scene": "sc_freeze",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "sc_check"
+    },
+    {
+     "at": 3,
+     "scene": "sc_badges"
+    },
+    {
+     "at": 5,
+     "scene": "sc_fee"
+    }
+   ]
+  },
+  {
+   "text": "Cơ quan công an không yêu cầu bạn chuyển tiền để chứng minh hay để điều tra. Đừng đọc mã OTP, đừng đưa mật khẩu ngân hàng, và đừng cài ứng dụng lạ.",
+   "seq": [
+    "sc_stop",
+    "sc_otp",
+    "sc_shield",
+    "sc_app"
+   ],
+   "scene": "sc_stop",
+   "shots": [
+    {
+     "at": 1,
+     "scene": "sc_otp"
+    },
+    {
+     "at": 2,
+     "scene": "sc_shield"
+    },
+    {
+     "at": 3,
+     "scene": "sc_app"
+    }
+   ]
+  },
+  {
+   "text": "Nếu nghi ngờ, hãy liên hệ ngân hàng và công an gần nhất, và giữ lại chứng cứ. Kẻ lừa đảo thường khai thác đúng nỗi nôn nóng muốn lấy lại tiền đã mất.",
+   "seq": [
+    "sc_verify",
+    "sc_evidence",
+    "sc_rush"
+   ],
+   "scene": "sc_verify",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "sc_evidence"
+    },
+    {
+     "at": 3,
+     "scene": "sc_rush"
+    }
+   ]
+  }
+ ]
+}
