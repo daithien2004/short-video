@@ -107,7 +107,7 @@
    ]
   },
   {
-   "text": "Chiêu này không mới. Công an nhiều nơi đã cảnh báo. Tin nhắn thường đến qua Facebook, TikTok, Zalo. Kẻ lừa nhắm vào người trẻ, hoặc người đang cần việc, cần tiền.",
+   "text": "Chiêu này không mới. Công an nhiều nơi đã cảnh báo. Tin nhắn thường đến qua mạng xã hội và ứng dụng nhắn tin. Kẻ lừa nhắm vào người trẻ, hoặc người đang cần việc, cần tiền.",
    "scene": "s9_old_phones",
    "seq": [
     "s9_old_phones",
@@ -120,7 +120,7 @@
      "scene": "s9_msg_facebook"
     },
     {
-     "at": 5,
+     "at": 3,
      "scene": "s9_target_young"
     }
    ]

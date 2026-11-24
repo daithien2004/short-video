@@ -3,7 +3,7 @@
  "pause": 0.2,
  "scenes": [
   {
-   "text": "Một người phụ nữ ở Tuyên Quang tham gia một nhóm kết bạn trên Facebook. Tại đó, chị quen một người đàn ông. Anh ta gửi cho chị đường link một trò chơi vòng quay may mắn.",
+   "text": "Một người phụ nữ ở Tuyên Quang tham gia một nhóm kết bạn trên mạng xã hội. Tại đó, chị quen một người đàn ông. Anh ta gửi cho chị đường link một trò chơi vòng quay may mắn.",
    "seq": [
     "sc_group",
     "sc_phone",

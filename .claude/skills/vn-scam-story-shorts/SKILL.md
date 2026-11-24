@@ -27,3 +27,5 @@ Kỹ thuật chung (chạy Studio, `script.json`, giọng VieNeu, bộ nhớ đ�
 - **Chữ trong caption:** ghi nguồn, ngày cập nhật; nhắc nhân vật là minh họa; số liệu thống kê ghi "theo báo chí".
 - Các video 6 và 7 (Nvidia, GTA 6) vẫn nền tối kiểu cũ, chưa chuyển sang phong cách mực; chưa có luật cho cảnh toàn thân/đám đông.
 
+
+- **Không đọc/hiện tên nền tảng hay thương hiệu trong video** (Facebook, TikTok, Zalo, YouTube...): nền tảng có thể hạn chế phân phối video nhắc tên đối thủ. Nói "mạng xã hội", "ứng dụng nhắn tin"; biểu tượng ứng dụng vẽ bằng ô màu chung, không dùng logo. Tên nền tảng chỉ nằm trong caption khi thật cần (dòng tiêu đề mục TikTok/Facebook Reels thì được).
