@@ -16,7 +16,7 @@ os.makedirs(OUT, exist_ok=True)
 SR, RATE, Q, TEAR, XF, SHOT_XF = shorts.SR, 1.12, 1 / 15, 0.3, 0.25, 0.3
 PAUSE = 0.20  # seconds of silence after a sentence (a third of it after a comma); user-chosen after comparing with the reference video's rhythm
 MODES = {"draft": dict(fps=15, scale=0.5), "final": dict(fps=30, scale=1.0)}
-CODE = ("engine.py", "build.py", "scenes_hk.py", "scenes_hk2.py", "scenes_nt.py", "chars.py", "scenes_tg.py", "chars_tg.py", "scenes_st.py", "chars_st.py", "scenes_ma.py", "chars_ma.py", "scenes_nv.py", "chars_nv.py", "scenes_g6.py", "scenes_sc.py", "scenes_sc2.py", "scenes_sc3.py", "scenes_s9.py", "scenes_ink.py", "opening_frames.py", "animate.py", "story2.py", "story3.py", "tulinh.py", "tulinh2.py", "tulinh3.py")
+CODE = ("engine.py", "build.py", "scenes_hk.py", "scenes_hk2.py", "scenes_nt.py", "chars.py", "scenes_tg.py", "chars_tg.py", "scenes_st.py", "chars_st.py", "scenes_ma.py", "chars_ma.py", "scenes_nv.py", "chars_nv.py", "scenes_g6.py", "scenes_g6h.py", "scenes_sc.py", "scenes_sc2.py", "scenes_sc3.py", "scenes_s9.py", "scenes_ink.py", "opening_frames.py", "animate.py", "story2.py", "story3.py", "tulinh.py", "tulinh2.py", "tulinh3.py")
 _tts_lock = threading.Lock()
 
 

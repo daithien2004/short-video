@@ -35,7 +35,7 @@ Chạy lại Studio: tắt đúng tiến trình `studio.py` và `multiprocessing
 
 ## Quy trình một truyện mới
 1. **Chọn truyện, tra nguồn web.** Chỉ dùng sự kiện chính xác, tránh điều tranh cãi; chi tiết truyền thuyết mở bằng "Truyền thuyết kể rằng", điều chưa chắc viết "nhiều người tin" hoặc "tương truyền". Không nêu số đời vua, năm hay địa danh hành chính nếu các nguồn không thống nhất.
-2. **Viết kịch bản** `projects/<tên>/script.json`: 10 đến 12 đoạn, khoảng 320 chữ (giọng 1.12 ≈ 1:10 đến 1:15; mục tiêu 1:05 đến 1:20). Giọng người kể chuyện nghiêm trang, câu ngắn. Số và năm viết bằng chữ. Không câu hỏi kết, không "follow" (đưa câu hỏi vào bình luận ghim).
+2. **Viết kịch bản** `projects/<tên>/script.json`: 10 đến 12 đoạn, khoảng 320 chữ (giọng 1.12 ≈ 1:10 đến 1:15; mục tiêu 1:05 đến 1:20). Giọng người kể chuyện nghiêm trang, câu ngắn. Số và năm viết bằng chữ. Không câu hỏi kết, không "follow" (đưa câu hỏi vào bình luận ghim). Câu kết phải mang thông tin mới (hệ quả, số liệu chốt, đối lập), không nhắc lại tuổi/tên vừa nêu ở hook.
 3. **Lên danh sách nhân vật trước khi vẽ**, mỗi người một diện mạo riêng (xem luật hình), rồi danh sách cảnh (khoảng 3 đến 4 cảnh cho mỗi đoạn).
 4. **Vẽ nhân vật + cảnh mới** (tệp `chars_xx.py`, `scenes_xx.py`, tiền tố `xx_`), đăng ký, xem bảng ảnh tĩnh (`tools/sheet.py`), sửa.
 5. **Chia khung:** mỗi đoạn trong script ghi `"seq": [tên các cảnh theo thứ tự]`, chạy `python tools/autoshots.py <dự án>` (sinh giọng rồi chọn điểm cắt để mỗi khung 1 đến 3,5 giây).
@@ -100,6 +100,7 @@ Chạy lại Studio: tắt đúng tiến trình `studio.py` và `multiprocessing
 - Dùng chung một hình người cho nhiều nhân vật; để vật (quả dưa) che mặt nhân vật.
 - Lệch nhịp giữa các video (pause khác nhau).
 - Ngắt dòng bìa gộp hai màu trong một dòng, hoặc gộp qua chỗ giọng nghỉ.
+- Tự thêm tùy chọn bìa theo dự án (`cover_width`, cỡ chữ riêng) khi người dùng đã chốt luật 108/12; để dấu gạch ngang `—` trong hook (bị tách thành dòng riêng, "GTA 6 — TỪ MỘT").
 - Lấy mẫu ảnh chữ bìa quá muộn (các dòng đổi nhanh hơn 0,3 giây; lấy ở `t0+0,1`); ảnh tĩnh cũ vì chưa khởi động lại Studio.
 - Hỏi nhiều câu, đề xuất xong lại chờ; nói "xong" khi chưa kiểm tra; đưa sự kiện từ trí nhớ mà không tra nguồn.
 - Xóa file của người dùng không được phép; đăng bài thay họ.
@@ -107,6 +108,8 @@ Chạy lại Studio: tắt đúng tiến trình `studio.py` và `multiprocessing
 ## Bẫy kỹ thuật trên máy này (Windows)
 - Chạy Python với `PYTHONUTF8=1`. Đường dẫn `D:/idea/...` hoặc `/d/idea/...` trong bash.
 - Khởi động lại Studio bằng công cụ PowerShell (chạy `powershell` từ trong bash từng tự kill chính nó). `engine.py` gọi `os.chdir` vào thư mục gốc khi import: dùng đường dẫn tuyệt đối hoặc tính từ gốc.
+- Lệnh PowerShell có `$_` đặt trong nháy kép của bash sẽ bị bash thay bằng đối số trước (thành `/d/idea`); dùng nháy đơn ngoài cùng: `powershell -NoProfile -Command '... $_ ...'`.
+- RAM cạn làm ONNX TTS báo `bad allocation`: tiến trình python con của Studio còn sót. Kiểm `FreePhysicalMemory`, chỉ kill `studio.py`/`multiprocessing.spawn` của dự án này rồi chạy lại `tools/autoshots.py`.
 - Viết nhiều file bằng Write/Edit, không heredoc nhiều file. Sửa chuỗi có xuống dòng trong HTML/JSX bằng Edit, đừng `\n` qua heredoc.
 - `from opening_frames import *` ghi đè biến `H`; mỗi tiến trình vẽ giữ LRU 6 cảnh, tối đa 6 tiến trình (16 GB RAM, đừng tăng; thiếu RAM báo `MemoryError`/`BrokenProcessPool`).
 - claude-mem có thể báo mất đăng nhập: người dùng cần `/login`; không tự khởi động lại worker.
@@ -121,7 +124,8 @@ Chạy lại Studio: tắt đúng tiến trình `studio.py` và `multiprocessing
 | 5 | Mai An Tiêm | `mai_an_tiem` | `chars_ma.py`, `scenes_ma.py` (`ma_`) | Mai an tiêm đã nói gì, mà bị vua đày ra đảo hoang? |
 6. **Nvidia: CEO từ chức rồi quay lại** (`projects/nvidia_ceo`, dạng tin tức giải thích, nhân vật `src/chars_nv.py`, cảnh `src/scenes_nv.py` tiền tố `nv_`), đã xuất (commit 539bbd0). Hook: "Vì sao CEO Nvidia từ chức rồi quay lại chỉ sau mười một ngày?". Quy tắc cho video tin tức người thật: tra nguồn gốc (thông cáo, CNBC), ghi rõ ai nói (chính thức / có tên / nguồn ẩn danh / cáo buộc chưa xác minh), không khẳng định điều chưa có bằng chứng, không vẽ ai làm điều bị cáo buộc, không đưa người khác bị nhắc trong tin, ghi ngày cập nhật vào caption; nhân vật thật vẽ cắt giấy đơn giản theo trang phục và kiểu tóc người dùng đưa (ảnh tham khảo), không chép khuôn mặt. Ông Huang: tóc bạc chải ngược, kính gọng nửa, áo da đen cổ đứng, tay khoanh, quần dài.
 7. **GTA 6: tiền bỏ ra và doanh số ngày đầu** (`projects/gta6`, tin tức giải thích, `src/scenes_g6.py` tiền tố `g6_`, 13 cảnh cắt giấy), đã xuất, commit 1c39bb2. Hook: "GTA 6 tốn hơn một tỷ đô. Ngày đầu bán được bao nhiêu?".
-(Video 8 và 9, thể loại kể chuyện lừa đảo, ghi ở skill `vn-scam-story-shorts`.)
+8. **GTA 6: vụ rò rỉ 2022 và cậu bé mười bảy tuổi** (`projects/gta6_hack`, tin tức giải thích, `src/scenes_g6h.py` tiền tố `g6h_`, 16 cảnh), đã xuất. Hook: "Một cậu bé mười bảy tuổi đã đánh cắp GTA 6. Từ một phòng khách sạn.". Câu kết đối lập ngày ra mắt lập kỷ lục với cảnh cậu trong tù.
+(Các video kể chuyện lừa đảo, thể loại riêng, ghi ở skill `vn-scam-story-shorts`.)
 
 Truyện đề xuất tiếp: Chử Đồng Tử – Tiên Dung, bánh chưng bánh giầy (Lang Liêu), Con Rồng cháu Tiên, Ngô Quyền và trận Bạch Đằng (lịch sử, cần tra nguồn kỹ).
 

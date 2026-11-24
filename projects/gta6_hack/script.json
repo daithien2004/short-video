@@ -1,0 +1,110 @@
+{
+ "hook": "Một cậu bé mười bảy tuổi đã đánh cắp GTA 6. Từ một phòng khách sạn.",
+ "hl": [
+  "MƯỜI BẢY TUỔI",
+  "PHÒNG KHÁCH SẠN"
+ ],
+ "cover": "g6h_hotel",
+ "speed": 1.12,
+ "pause": 0.2,
+ "scenes": [
+  {
+   "text": "Tháng Chín năm hai nghìn không trăm hai mươi hai, chín mươi clip từ bản GTA 6 chưa hoàn thiện xuất hiện trên mạng, gần một giờ đồ họa thô. Lần đầu người xem thấy Lucia, nhân vật nữ chơi được của game.",
+   "seq": [
+    "g6h_leak",
+    "g6h_footage"
+   ],
+   "scene": "g6h_leak",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "g6h_footage"
+    }
+   ]
+  },
+  {
+   "text": "Rockstar xác nhận hệ thống bị xâm nhập. Thủ phạm là một cậu bé mười bảy tuổi người Oxford, thành viên nhóm hacker Lapsus. Lúc đó, cậu đang ở một khách sạn Travelodge, được bố trí để bảo vệ sau khi bị nhóm khác đe dọa.",
+   "seq": [
+    "g6h_teen",
+    "g6h_guard"
+   ],
+   "scene": "g6h_teen",
+   "shots": [
+    {
+     "at": 3,
+     "scene": "g6h_guard"
+    }
+   ]
+  },
+  {
+   "text": "Máy tính của cậu đã bị tịch thu. Cậu dùng một chiếc Fire Stick cắm vào tivi khách sạn, cùng bàn phím và chuột Bluetooth, để vào hệ thống nội bộ của Rockstar.",
+   "seq": [
+    "g6h_nopc",
+    "g6h_stick"
+   ],
+   "scene": "g6h_nopc",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "g6h_stick"
+    }
+   ]
+  },
+  {
+   "text": "Trong đó có cả Slack. Cậu gửi tối hậu thư: nếu Rockstar không liên lạc trong hai mươi bốn giờ, cậu sẽ tung mã nguồn. Rockstar không đàm phán, và cậu đăng toàn bộ footage.",
+   "seq": [
+    "g6h_slack",
+    "g6h_refuse"
+   ],
+   "scene": "g6h_slack",
+   "shots": [
+    {
+     "at": 3,
+     "scene": "g6h_refuse"
+    }
+   ]
+  },
+  {
+   "text": "Rockstar ước tính vụ việc tốn khoảng năm triệu đô và hàng nghìn giờ làm việc. Cáo trạng nói Lapsus còn tấn công Uber, Revolut, hai hãng viễn thông BT và EE, gây thiệt hại khoảng mười triệu bảng.",
+   "seq": [
+    "g6h_cost",
+    "g6h_targets"
+   ],
+   "scene": "g6h_cost",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "g6h_targets"
+    }
+   ]
+  },
+  {
+   "text": "Tháng Mười Hai năm hai nghìn không trăm hai mươi ba, tòa án Anh đưa cậu vào bệnh viện tâm thần không thời hạn. Đầu năm hai nghìn không trăm hai mươi sáu, bác sĩ kết luận cậu đủ điều kiện, cậu được chuyển sang nhà tù thường. Ngày mười sáu tháng Mười Một, tại tòa Woolwich ở London, cậu nhận tội.",
+   "seq": [
+    "g6h_hospital",
+    "g6h_court"
+   ],
+   "scene": "g6h_hospital",
+   "shots": [
+    {
+     "at": 3,
+     "scene": "g6h_court"
+    }
+   ]
+  },
+  {
+   "text": "Ngày mười chín tháng Mười Một, GTA 6 ra mắt đúng ngày đã công bố và lập kỷ lục ba phẩy bảy chín tỷ đô trong ngày đầu. Còn cậu bé từng đánh cắp nó từ một phòng khách sạn thì đang ở trong tù.",
+   "seq": [
+    "g6h_launch",
+    "g6h_cell"
+   ],
+   "scene": "g6h_launch",
+   "shots": [
+    {
+     "at": 2,
+     "scene": "g6h_cell"
+    }
+   ]
+  }
+ ]
+}

@@ -183,5 +183,5 @@ def registry():
     global _X
     if _X is None: _X = X.build_scenes()
     mid = lambda i: _X[i]["mid"]
-    import scenes_hk2, scenes_nt, scenes_tg, scenes_st, scenes_ma, scenes_nv, scenes_g6, scenes_sc, scenes_sc2, scenes_sc3, scenes_s9
-    return {**scenes_hk2.REG, **scenes_nt.REG, **scenes_tg.REG, **scenes_st.REG, **scenes_ma.REG, **scenes_nv.REG, **scenes_g6.REG, **scenes_sc.REG, **scenes_sc2.REG, **scenes_sc3.REG, **scenes_s9.REG, "tower": mid(0), "victory": mid(1), "boat": mid(2), "turtle": mid(3), "sword": mid(4), "returned": mid(5), "dragon": mid(6), "banners": banners, "fisher": fisher, "banyan": banyan, "longquan": longquan, "army": army, "hanoi": hanoi, "underwater": underwater, "coloa": coloa, "enemy": enemy, "throne": throne, "ripple": mid(5)}
+    import scenes_hk2, scenes_nt, scenes_tg, scenes_st, scenes_ma, scenes_nv, scenes_g6, scenes_g6h, scenes_sc, scenes_sc2, scenes_sc3, scenes_s9
+    return {**scenes_hk2.REG, **scenes_nt.REG, **scenes_tg.REG, **scenes_st.REG, **scenes_ma.REG, **scenes_nv.REG, **scenes_g6.REG, **scenes_g6h.REG, **scenes_sc.REG, **scenes_sc2.REG, **scenes_sc3.REG, **scenes_s9.REG, "tower": mid(0), "victory": mid(1), "boat": mid(2), "turtle": mid(3), "sword": mid(4), "returned": mid(5), "dragon": mid(6), "banners": banners, "fisher": fisher, "banyan": banyan, "longquan": longquan, "army": army, "hanoi": hanoi, "underwater": underwater, "coloa": coloa, "enemy": enemy, "throne": throne, "ripple": mid(5)}
