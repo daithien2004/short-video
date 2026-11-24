@@ -1,0 +1,191 @@
+{
+ "speed": 1.12,
+ "pause": 0.2,
+ "scenes": [
+  {
+   "text": "Ngày mười bảy tháng mười một, tại xã Tây Giang, Đà Nẵng, hai nữ sinh nhận tin nhắn từ một người lạ. Người đó rủ đi làm ở vùng Bắc Kạn cũ. Lương tám đến mười triệu đồng một tháng, chưa kể tiền boa.",
+   "scene": "s9_calendar",
+   "seq": [
+    "s9_calendar",
+    "s9_two_girls_phone",
+    "s9_salary_bills"
+   ],
+   "shots": [
+    {
+     "at": 3,
+     "scene": "s9_two_girls_phone"
+    },
+    {
+     "at": 5,
+     "scene": "s9_salary_bills"
+    }
+   ]
+  },
+  {
+   "text": "Hai em mới mười lăm tuổi. Người lạ hứa việc nhẹ, không cần bằng cấp hay kinh nghiệm. Chỉ cần lên xe, có người đón tận nơi.",
+   "scene": "s9_two_girls_young",
+   "seq": [
+    "s9_two_girls_young",
+    "s9_easy_job_promise",
+    "s9_just_get_in_car"
+   ],
+   "shots": [
+    {
+     "at": 1,
+     "scene": "s9_easy_job_promise"
+    },
+    {
+     "at": 3,
+     "scene": "s9_just_get_in_car"
+    }
+   ]
+  },
+  {
+   "text": "Người ấy đặt trước một chiếc ô tô. Xe đến đúng hẹn. Hai em tưởng đó là việc hấp dẫn, nên lên xe. Chuyến đi bắt đầu trong đêm.",
+   "scene": "s9_car_booked",
+   "seq": [
+    "s9_car_booked",
+    "s9_car_arrives",
+    "s9_get_in_car"
+   ],
+   "shots": [
+    {
+     "at": 1,
+     "scene": "s9_car_arrives"
+    },
+    {
+     "at": 3,
+     "scene": "s9_get_in_car"
+    }
+   ]
+  },
+  {
+   "text": "Xe rời Đà Nẵng, đi hướng Bắc Kạn. Đến Quảng Trị, công an xã Tây Giang phối hợp gia đình chặn lại. Lúc đó trời đã tối.",
+   "scene": "s9_leaving_danang",
+   "seq": [
+    "s9_leaving_danang",
+    "s9_police_stop"
+   ],
+   "shots": [
+    {
+     "at": 2,
+     "scene": "s9_police_stop"
+    }
+   ]
+  },
+  {
+   "text": "Công an tiếp cận chiếc xe, đưa hai em về trong đêm. Công an bàn giao các em cho gia đình, an toàn. Chuyến đi dừng trước khi tới nơi.",
+   "scene": "s9_officer_approach",
+   "seq": [
+    "s9_officer_approach",
+    "s9_handover_family"
+   ],
+   "shots": [
+    {
+     "at": 2,
+     "scene": "s9_handover_family"
+    }
+   ]
+  },
+  {
+   "text": "Đây là dấu hiệu dụ dỗ người chưa thành niên đi làm xa. Phía sau lời hứa việc nhẹ lương cao, có thể là bóc lột lao động, cưỡng bức, hoặc mua bán người.",
+   "scene": "s9_officer_warning_lure",
+   "seq": [
+    "s9_officer_warning_lure",
+    "s9_forced_labor",
+    "s9_trafficking"
+   ],
+   "shots": [
+    {
+     "at": 2,
+     "scene": "s9_forced_labor"
+    },
+    {
+     "at": 4,
+     "scene": "s9_trafficking"
+    }
+   ]
+  },
+  {
+   "text": "Chiêu này không mới. Công an nhiều nơi đã cảnh báo. Tin nhắn thường đến qua Facebook, TikTok, Zalo. Kẻ lừa nhắm vào người trẻ, hoặc người đang cần việc, cần tiền.",
+   "scene": "s9_old_phones",
+   "seq": [
+    "s9_old_phones",
+    "s9_msg_facebook",
+    "s9_target_young"
+   ],
+   "shots": [
+    {
+     "at": 2,
+     "scene": "s9_msg_facebook"
+    },
+    {
+     "at": 5,
+     "scene": "s9_target_young"
+    }
+   ]
+  },
+  {
+   "text": "Dấu hiệu dễ thấy là lương cao bất thường. Không hỏi bằng cấp, không hỏi kinh nghiệm, nhưng lại đặt xe, giục đi ngay. Càng gấp, càng phải dừng lại.",
+   "scene": "s9_high_salary_sign",
+   "seq": [
+    "s9_high_salary_sign",
+    "s9_no_degree_check",
+    "s9_but_book_car",
+    "s9_must_stop"
+   ],
+   "shots": [
+    {
+     "at": 1,
+     "scene": "s9_no_degree_check"
+    },
+    {
+     "at": 3,
+     "scene": "s9_but_book_car"
+    },
+    {
+     "at": 5,
+     "scene": "s9_must_stop"
+    }
+   ]
+  },
+  {
+   "text": "Trước khi đi làm xa, hãy kiểm chứng với người thân. Không tự ý đi theo người lạ. Không nhận tiền hay quà từ người chưa quen. Gặp lời mời như vậy, hãy báo công an gần nhất.",
+   "scene": "s9_check_with_family",
+   "seq": [
+    "s9_check_with_family",
+    "s9_dont_follow_stranger",
+    "s9_call_police"
+   ],
+   "shots": [
+    {
+     "at": 2,
+     "scene": "s9_dont_follow_stranger"
+    },
+    {
+     "at": 4,
+     "scene": "s9_call_police"
+    }
+   ]
+  },
+  {
+   "text": "Vụ này may được ngăn kịp. Nhớ lấy một điều: việc thật không giục bạn lên xe giữa đêm. Một cú điện thoại cho gia đình có thể giữ bạn lại, trước khi đi quá xa.",
+   "scene": "s9_stopped_in_time",
+   "seq": [
+    "s9_stopped_in_time",
+    "s9_no_night_ride",
+    "s9_call_family_safe"
+   ],
+   "shots": [
+    {
+     "at": 2,
+     "scene": "s9_no_night_ride"
+    },
+    {
+     "at": 3,
+     "scene": "s9_call_family_safe"
+    }
+   ]
+  }
+ ]
+}
